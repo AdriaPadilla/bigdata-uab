@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+	<!-- http://hilite.me/ -->
+	<head>
+		<title>Data Viz. Big Data UAB</title>
+		<link href="./styles/style.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		<div class="container">
+			<header>
+					<p><a href="./index.html">Regresar al Inicio</a>
+			</header>
+					
+
+
+							<h1>Elementos básicos de Python</h1>
+				
+				<p>En Python hay muchas tipologías de datos... pero para empezar, vamos a identificar 4 elementos básicos:</p>
+				<ol>
+					<li><b>Strings</b> (cadenas de texto): Las cadenas de texto son conjuntos de carácteres que pueden tener (o no) sentido. Se considera una cadena de texto todo aquello que está envuelto por unas comillas dobles "" o simples ''. Por ejemplo:<br><br>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&quot;esto es una cadena&quot;</span>
+<span style="color: #e6db74">&quot;esto es otra cadena&quot;</span>
+</pre></div><br><br>
+
+
+
+					</li>
+					<li><b>Integers (enteros)</b>: Los "integers" son números enteros. En Python se consideran números enteros cualquier número que no sea decimal. Los enteros no tienen comillas simples ni dobles. Por ejemplo:<br><br>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #ae81ff">1</span> <span style="color: #75715e"># Esto es un número entero</span>
+</pre></div>
+					</li><br><br>
+					<li><b>floats (decimales)</b>: Los "floats" son números decimales. En Python los decimales se indican con un punto "." y, al igual que los números enteros, no llevan comillas simples ni dobles. Por ejemplo:</li><br><br>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #ae81ff">1.2</span> <span style="color: #75715e"># Esto es un número decimal</span>
+</pre></div><br><br>
+
+					<li><b>variables</b>: Las variables son cadenas de texto que permiten conservar información. Se escriben sin comillas simples o dobles, y deben ser una cadena única de carácteres sin corte. Por ejemplo:<br><br>
+						<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #e6db74">&quot;Esto es una cadena&quot;</span>
+<span style="color: #f8f8f2">esto_es_una_variable</span>
+</pre></div>
+
+
+				</li>
+				</ol>	
+				<h2 id="print">Función <i><span style="color: #66d9ef">Print</span></i>()</h2>
+				<p>La función más básica de Python posiblemente sea <i><span style="color: #66d9ef">print</span></i>(). Si queremos que el programa que estamos creando nos muestre el resultado en la consola, es necesario ubicar esta función. La sintáxis básica es <i><span style="color: #66d9ef">print</span></i>(alguna_cosa). Por ejemplo:</p>
+				<br>	
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;una cadena de texto&quot;</span><span style="color: #f8f8f2">)</span>
+</pre></div>
+
+
+
+
+
+
+
+
+<!-- VARIABLES --> 
+
+				<h2 id="vars">Variables</h2>
+				<p>Las <b>variables</b> son un elemento fundamental en programación. Permiten almacenar información en un formato identificable. Las variables se pueden crear, asignar y modificar. En Python, una variable puede contener cualquier cosa, desde un número a una cadena de texto, pero también funciones o conjuntos de datos.</p>
+				<p>El siguiente ejemplo muestra una variable llamada "var", a la que hemos asignado el valor "1". Podemos "printar" esta variable mediante la función <i class="funct">print</i>(var). La consola mostrará en pantalla el valor de la variable.</br></br>
+
+
+<!-- Codi -->
+<div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">var</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span>
+
+<span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(var)</span>
+
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #ae81ff">1</span>
+</pre></div>
+</br>
+
+
+			<p>Tal como se ha dicho, podemos crear variables y modificarlas. El siguiente ejemplo muestra cómo la variable "var" se crea y se le asigna el valor de "1". Luego se modifica el valor de esta variable volviendo a declarar "var" y asignando un nuevo valor. El valor final de la variable "var" será "2".</p>
+			</br>
+				<!-- Codi -->
+<div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">var</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span>
+<span style="color: #f8f8f2">var</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">2</span>
+
+<span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(var)</span>
+
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #ae81ff">2</span>
+</pre></div></br>
+
+			<p>Podemos realizar operaciones con las variables. Si son números, las variables se pueden sumar, restar, dividir o realizar cualquier otra operación matemática. En el siguiente ejemplo declaramos dos variables. Cada una tiene un valor distinto. El resultado de la suma de ambas variables se asigna a una nueva variable llamada "resultat". Esta nueva variable contiene el resultado del cálculo matemático. Si lo imprimimos, veremos el valor de la variable "resultat".</p></br>
+
+<!-- Codi--><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">var_1</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">3</span>
+<span style="color: #f8f8f2">var_2</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">5</span>
+
+<span style="color: #f8f8f2">resultat</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">var_1</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">var_2</span>
+
+<span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(resultat)</span>
+
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #ae81ff">8</span>
+</pre></div></br>
+			<p>Las variables pueden contener cadenas de texto. Del mismo modo que ocurre con los números, también se pueden sumar. Esto hará que las cadenas se "concatenen". Pero debes tener en cuenta que <b>Python no sumará una variable que contenga un número entero con otra que contenga una cadena de texto</b>.</p></br>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">variable_1</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;Hola&quot;</span>
+<span style="color: #f8f8f2">variable_2</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;mi nombre es Adrian&quot;</span>
+
+<span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(variable_1,</span> <span style="color: #f8f8f2">variable_2)</span>
+
+<span style="color: #f8f8f2">frase_completa</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">variable_1</span><span style="color: #f92672">+</span><span style="color: #e6db74">&quot; &quot;</span><span style="color: #f92672">+</span><span style="color: #f8f8f2">variable_2</span> <span style="color: #75715e"># Añadimos un espacio en blanco entre variables</span>
+<span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(frase_completa)</span>
+
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #f8f8f2">Hola</span> <span style="color: #f8f8f2">mi</span> <span style="color: #f8f8f2">nombre</span> <span style="color: #f8f8f2">es</span> <span style="color: #f8f8f2">Adrian</span>
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #f8f8f2">Hola</span> <span style="color: #f8f8f2">mi</span> <span style="color: #f8f8f2">nombre</span> <span style="color: #f8f8f2">es</span> <span style="color: #f8f8f2">Adrian</span>
+</pre></div><br>
+<p>Si tratamos de concatenar una cadena con un número entero sumando ambas variables. Recibiremos un error:</p><br>
+
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">variable_cadena</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;Mi número preferido es el&quot;</span>
+<span style="color: #f8f8f2">variable_entero</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">1</span>
+
+<span style="color: #f8f8f2">frase_completa</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">variable_cadena</span><span style="color: #f92672">+</span><span style="color: #f8f8f2">variable_entero</span> 
+
+<span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(frase_completa)</span>
+
+<span style="color: #f92672"></span><span style="color: #f8f8f2">Traceback</span> <span style="color: #f8f8f2">(most</span> <span style="color: #f8f8f2">recent</span> <span style="color: #f8f8f2">call</span> <span style="color: #f8f8f2">last):</span>
+      <span style="color: #f8f8f2">File</span> <span style="color: #e6db74">&quot;main.py&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">line</span> <span style="color: #ae81ff">4</span><span style="color: #f8f8f2">,</span> <span style="color: #f92672">in</span> <span style="color: #f92672">&lt;</span><span style="color: #f8f8f2">module</span><span style="color: #f92672">&gt;</span>
+         <span style="color: #f8f8f2">frase_completa</span> <span style="color: #f92672">=</span> <span style="color: #f92672">&gt;&gt;</span><span style="color: #f8f8f2">variable_cadena</span><span style="color: #f92672">+</span><span style="color: #f8f8f2">variable_entero</span>
+<span style="color: #a6e22e">TypeError</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">can</span> <span style="color: #f8f8f2">only</span> <span style="color: #f8f8f2">concatenate</span> <span style="color: #f8f8f2">str</span> <span style="color: #f8f8f2">(</span><span style="color: #f92672">not</span> <span style="color: #e6db74">&quot;int&quot;</span><span style="color: #f8f8f2">)</span> <span style="color: #f8f8f2">to</span> <span style="color: #f8f8f2">str</span>
+</pre></div>
+<br>
+
+
+
+				<h2 id="lists">Listas</h2>
+				<p>Las listas son una estructura de datos formada por una secuencia de elementos. Puede ser una lista de cadenas, una lista de enteros, de decimales, de variables, o cualquier otro tipo de objetos. Las listas se declaran mediante el uso de llaves de ator "[]". Cada elemento de la lista está separado por una coma. Las listas, a su vez, pueden contener otras listas. Por ejemplo:</p>
+				<br>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">lista_a</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&quot;elemento1&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;elemento2&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;elemento_n&quot;</span><span style="color: #f8f8f2">]</span> <span style="color: #75715e"># Esto es una lista de cadenas</span>
+
+
+<span style="color: #f8f8f2">lista_b</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">3</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">4</span><span style="color: #f8f8f2">]</span> <span style="color: #75715e"># Esto es una lista de enteros</span>
+
+<span style="color: #f8f8f2">var1</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;hola&quot;</span>
+<span style="color: #f8f8f2">var2</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;adiós&quot;</span>
+
+<span style="color: #f8f8f2">lista_c</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[var1,</span> <span style="color: #f8f8f2">var2]</span> <span style="color: #75715e"># esta es una lista de variables</span>
+
+<span style="color: #f8f8f2">lista_d</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[lista_a,</span> <span style="color: #f8f8f2">lista_b]</span> <span style="color: #75715e"># Esto es una lista de listas</span>
+
+<span style="color: #f8f8f2">print(lista_a)</span>
+<span style="color: #f8f8f2">print(lista_b)</span>
+<span style="color: #f8f8f2">print(lista_c)</span>
+<span style="color: #f8f8f2">print(lista_d)</span>
+
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;elemento1&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;elemento2&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;elemento_n&#39;</span><span style="color: #f8f8f2">]</span>
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #f8f8f2">[</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">3</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">4</span><span style="color: #f8f8f2">]</span>
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;hola&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;adiós&#39;</span><span style="color: #f8f8f2">]</span>
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #f8f8f2">[[</span><span style="color: #e6db74">&#39;elemento1&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;elemento2&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;elemento_n&#39;</span><span style="color: #f8f8f2">],</span> <span style="color: #f8f8f2">[</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">3</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">4</span><span style="color: #f8f8f2">]]</span>
+</pre></div>
+
+				<br>
+
+
+				<h2 id="iters">Iteraciones</h2>
+				<p>La iteración, conocido como "<i>loop</i>", es una forma de trabajar sobre listas. El operador básico básico para iterar sobre una lista es el <i>for</i>. La estructura es la siguiente para construir el iterador es el siguiente:</p>
+					<br>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">elemento</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">lista:</span> 
+	<span style="color: #f8f8f2">haz</span> <span style="color: #f8f8f2">algo</span>
+</pre></div>
+<br>
+<p>Fijate que "haz algo" se encuentra tabulado a la derecha. En Python las tabulaciones indican la jerarquía de las acciones. Si no tabulamos, el loop no hará nada, ya que no contendrá ninguna acción. Cada vez que volvemos al margen izquierdo, se empieza una nueva jerarquía. En el siguiente ejemplo, se itera sobre una lista de tres elementos llamada "numeros". <b>Por cada número en la lista números, se tomará el número y se sumará el valor de la variable "var"</b>. Luego, se imprimirá el resultado final.</p><br>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">var</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">10</span>
+<span style="color: #f8f8f2">numeros</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">3</span><span style="color: #f8f8f2">]</span>
+
+<span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">numero</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">numeros:</span>
+    <span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(var</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">numero)</span>
+
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #ae81ff">11</span>
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #ae81ff">12</span>
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #ae81ff">13</span>
+</pre></div>
+<h2 id="cond">Condicionales</h2>
+<p>Los condicionales son operadores que permiten introducir lógicas en la programación, y realizar una acción y otra dependiendo del cumplimiento de una o varias condiciones.</p>
+<p>En el siguiente ejemplo venemos una lista de alumnos. Vamos a iterar sobre esta lista para saber cuál de ellos es carla. Para eso usaremos el condicional <i>if</i> seguido de el elemento sobre el que se aplicará la condición (<i>nombre</i>) i finalmente la condición a cumplir.</p>
+<p>Por (<i>for</i>) cada <i>nombre</i> en <i>lista</i> si el nombre es "idéntico" (<i>==</i>) a "carla", se hará este <i>print()</i>. En otro caso (<i>else</i>) se imprimirá otra cosa.</p><br>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">lista</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&quot;adria&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;carla&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;joan&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;pere&quot;</span><span style="color: #f8f8f2">]</span>
+
+<span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">nombre</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">lista:</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">nombre</span> <span style="color: #f92672">==</span> <span style="color: #e6db74">&quot;carla&quot;</span><span style="color: #f8f8f2">:</span>
+        <span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;aqui está &quot;</span><span style="color: #f92672">+</span><span style="color: #f8f8f2">nombre)</span>
+    <span style="color: #66d9ef">else</span><span style="color: #f8f8f2">:</span>
+        <span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(nombre</span><span style="color: #f92672">+</span><span style="color: #e6db74">&quot; no es Carla&quot;</span><span style="color: #f8f8f2">)</span>
+
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #f8f8f2">adria</span> <span style="color: #f8f8f2">no</span> <span style="color: #f8f8f2">es</span> <span style="color: #f8f8f2">Carla</span>
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #f8f8f2">aqui</span> <span style="color: #f8f8f2">está</span> <span style="color: #f8f8f2">carla</span>
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #f8f8f2">joan</span> <span style="color: #f8f8f2">no</span> <span style="color: #f8f8f2">es</span> <span style="color: #f8f8f2">Carla</span>
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #f8f8f2">pere</span> <span style="color: #f8f8f2">no</span> <span style="color: #f8f8f2">es</span> <span style="color: #f8f8f2">Carla</span>
+</pre></div><br>
+<p>Los condicionales se pueden anidar. Por ejemplo, en el siguiente ejemplo se itera sobre una lista de números. El cálculo matemático únicamente se ejecuta si el número es <i>>=</i> (superior o igual) a <i>5</i>. Luego, se aplica una nueva condición para la impresión de los resultados: únicamente se imprimen aquellos resultados que <i>></i> (superiores) a 17.</p><br>
+
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">var</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">10</span>
+<span style="color: #f8f8f2">numeros</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">3</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">4</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">5</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">6</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">7</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">8</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">9</span><span style="color: #f8f8f2">,</span> <span style="color: #ae81ff">10</span><span style="color: #f8f8f2">]</span>
+
+<span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">numero</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">numeros:</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">numero</span> <span style="color: #f92672">&gt;=</span> <span style="color: #ae81ff">5</span><span style="color: #f8f8f2">:</span>
+        <span style="color: #f8f8f2">resultado</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">var</span> <span style="color: #f92672">+</span> <span style="color: #f8f8f2">numero</span>
+        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">resultado</span> <span style="color: #f92672">&gt;</span> <span style="color: #ae81ff">17</span><span style="color: #f8f8f2">:</span>
+            <span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(resultado)</span>
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #ae81ff">18</span>
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #ae81ff">19</span>
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #ae81ff">20</span>
+</pre></div>
+</br>
+
+<h2 id="func">Funciones nativas de python</h2>
+<p>Python tiene muchas funciones nativas. Estas funciones realizan operaciones específicas y tienen como objetivo simplificar procesos. Hay infinidad, y será necesario buscar cómo se implementan cuando sea necesario. En este enlace tienes la documentación y el listado completo de funciones disponibles <a href="https://docs.python.org/3/library/functions.html" target="_blank"><b>Python Built-in Functions</b></a>.</p>
+	<p>En el siguiente ejemplo, se usa la función el operador <i>in</i> para simplificar el chequeo de un valor en una lista, esto evitará tener que crear un <i>for</i> loop para iterar sobre los elementos y comprobarlos uno por uno.</p><br>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">lista</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&quot;adria&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;carla&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;joan&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;pere&quot;</span><span style="color: #f8f8f2">]</span>
+
+<span style="color: #f8f8f2">nom</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;carme&quot;</span>
+
+<span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">nom</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">lista:</span>
+    <span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(f</span><span style="color: #e6db74">&quot;{nom} está en la lista&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">else</span><span style="color: #f8f8f2">:</span>
+    <span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(f</span><span style="color: #e6db74">&quot;{nom} no está en la lista&quot;</span><span style="color: #f8f8f2">)</span>
+
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #f8f8f2">carme</span> <span style="color: #f8f8f2">no</span> <span style="color: #f8f8f2">está</span><span style="color: #960050; background-color: #1e0010"></span> <span style="color: #f8f8f2">en</span> <span style="color: #f8f8f2">la</span> <span style="color: #f8f8f2">lista</span>
+</pre></div><br>
+
+<p>En el siguiente ejemplo, además de chequear si "joan" se encuentra en la lista de nombres, también queremos saber qué posición ocupa en esta lista. Para ello usamos la función <i>index()</i>. Esta función tiene la siguiente sintaxis <i>lista.index(elemento)</i>.</p>
+<br>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">lista</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&quot;adria&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;carla&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;joan&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;pere&quot;</span><span style="color: #f8f8f2">]</span>
+
+<span style="color: #f8f8f2">nom</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;joan&quot;</span>
+
+<span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">nom</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">lista:</span>
+    <span style="color: #f8f8f2">position</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">lista</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">index(nom)</span>
+    <span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(f</span><span style="color: #e6db74">&quot;{nom} está en la lista y es la posición {position}&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">else</span><span style="color: #f8f8f2">:</span>
+    <span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(f</span><span style="color: #e6db74">&quot;{nom} no está en la lista&quot;</span><span style="color: #f8f8f2">)</span>
+
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #f8f8f2">joan</span> <span style="color: #f8f8f2">está</span><span style="color: #960050; background-color: #1e0010"></span> <span style="color: #f8f8f2">en</span> <span style="color: #f8f8f2">la</span> <span style="color: #f8f8f2">lista</span> <span style="color: #f8f8f2">y</span> <span style="color: #f8f8f2">es</span> <span style="color: #f8f8f2">la</span> <span style="color: #f8f8f2">posición</span> <span style="color: #ae81ff">2</span>
+</pre></div>
+<br>
+<p>Hay dos funcionalidades más que son interesantes, y que forman parte de las herramienta "básicas" de python. La primera es <i>len()</i>. Se usa para saber qué tamaño tiene una lista. La segunda es <i>set()</i>, que sirve para convertir cualquier conjunto de datos iterables en un conjunto de datos únicos. En el siguiente ejemplo tenemos una lista de alumnos, y algunos de estos nombre están repetidos. Queremos saber los nombres únicos, el tamaño total de la lista, y el tamaño de la lista de nombres únicos.</p>
+<br>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">lista</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span>
+    <span style="color: #e6db74">&quot;adria&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;carla&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;joan&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;pere&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;carla&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;pere&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;adria&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;quico&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;pere&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;joan&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;agustí&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;adria&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;joan&quot;</span><span style="color: #f8f8f2">,</span>
+<span style="color: #f8f8f2">]</span>
+
+<span style="color: #f8f8f2">valors_unics</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">set(lista)</span>
+<span style="color: #f8f8f2">longitud_llista</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">len(lista)</span>
+<span style="color: #f8f8f2">longitud_valors_unics</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">len(set(lista))</span>
+
+<span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(valors_unics)</span>
+<span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(longitud_llista)</span>
+<span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(longitud_valors_unics)</span>
+
+
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #f8f8f2">{</span><span style="color: #e6db74">&#39;pere&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;quico&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;agustí&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;carla&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;adria&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;joan&#39;</span><span style="color: #f8f8f2">}</span>
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #ae81ff">13</span>
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #ae81ff">6</span>
+</pre></div><br>
+<p>Por último, es importante tener presente la funcionalidad <i>count()</i>, que permite saber cuantos valores existen en una lista identicos a un determinado valor. En el siguiente ejemplo se usa esta funcionalidad dentro de un <i>for</i>, para contar cuantas veces aparece cada nombre</p><br>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">lista</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span>
+    <span style="color: #e6db74">&quot;adria&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;carla&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;joan&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;pere&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;carla&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;pere&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;adria&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;quico&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;pere&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;joan&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;agusti&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;adria&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;joan&quot;</span><span style="color: #f8f8f2">,</span>
+<span style="color: #f8f8f2">]</span>
+
+<span style="color: #f8f8f2">unics</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">set(lista)</span>
+
+<span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">nom</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">unics:</span>
+    <span style="color: #f8f8f2">contador</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">lista</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">count(nom)</span>
+    <span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(f</span><span style="color: #e6db74">&quot;{nom} apareix {contador} vegades&quot;</span><span style="color: #f8f8f2">)</span>
+
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #f8f8f2">quico</span> <span style="color: #f8f8f2">apareix</span> <span style="color: #ae81ff">1</span> <span style="color: #f8f8f2">vegades</span>
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #f8f8f2">agusti</span> <span style="color: #f8f8f2">apareix</span> <span style="color: #ae81ff">1</span> <span style="color: #f8f8f2">vegades</span>
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #f8f8f2">joan</span> <span style="color: #f8f8f2">apareix</span> <span style="color: #ae81ff">3</span> <span style="color: #f8f8f2">vegades</span>
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #f8f8f2">pere</span> <span style="color: #f8f8f2">apareix</span> <span style="color: #ae81ff">3</span> <span style="color: #f8f8f2">vegades</span>
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #f8f8f2">adria</span> <span style="color: #f8f8f2">apareix</span> <span style="color: #ae81ff">3</span> <span style="color: #f8f8f2">vegades</span>
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #f8f8f2">carla</span> <span style="color: #f8f8f2">apareix</span> <span style="color: #ae81ff">2</span> <span style="color: #f8f8f2">vegades</span>
+</pre></div>
+
+
+				<h1 id="ejer">Ejercicio 1</h1>
+				<p>La UAB acaba de celebrar sus jornadas de puertas abiertas y los futuros estudiantes han acudido a las sesiones informativas. Cada vez que una persona entra en una sesión se anota su nombre. Alguien ha juntado todos los nombres en una sola lista... ¿Puedes sacar información útil de este listado?</p>
+				<ol>
+ 					<li>¿Cuantas personas han asistido a las jornadas de puertas abiertas?</li>
+ 					<li>¿Cuantas personas han asistido a más de dos sesiones?</li>
+ 					<li>¿Qué porcentaje de los asistentes accede a más de dos sesiones?</li>
+				</ol>
+				<br>
+				<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">llista</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span>
+    <span style="color: #e6db74">&quot;david&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;dani&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;marta&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;jaume&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;adria&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;carla&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;joan&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;pere&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;carla&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;pere&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;adria&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;quico&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;pere&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;joan&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;agustí&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;adria&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;joan&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;adria&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;siscu&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;carles&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;dani&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;carla&quot;</span>
+    <span style="color: #f8f8f2">]</span>
+				</pre></div>			
+				<p><b>Solución del ejercicio 1 (no activo)</b></p>
+			<footer>
+			<hr>
+			<p>
+                Adrià Padila<br>
+                adrian.padilla@uab.cat<br>
+                <b>Universitat Autònoma de Barcelona</b>
+            </p>
+
+			</footer>
+		</div>
+	</body>
+</html>

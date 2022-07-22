@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html>
+	<!-- http://hilite.me/ -->
+	<head>
+		<title>Data Viz. Big Data UAB</title>
+		<link href="./styles/style.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+
+		<div class="container">
+			<header>
+					<p><a href="./index.html">Regresar al Inicio</a>
+			</header>
+
+			<h1>Spofity API</h1>
+			<h2>Documentación Básica</h2>
+			<ol>
+				<li><a href="https://developer.spotify.com/documentation/web-api/" target="_blank">API Spotify: Documentación</a></li>
+				<li><a href="https://spotipy.readthedocs.io/en/master/" target="_blank">Spotipy: Python Library</a></li>
+			</ol>
+			<h2>Objetivo del ejercicio</h2>
+			<p><b>Objetivo</b>: Crear un programa en Python que extraiga datos de la API de Spotify. Queremos generar un grafo que permita observar, 
+				estudiar y explorar el módo en cómo Spotify relaciona los artistas de la plataforma. Aquí un ejemplo:</p>
+			<img src="./img/spotixplore.png">
+			
+			<h2>Pasos a seguir:</h2>
+			<ol>
+				<li>¿La API de Spotify proporciona los datos que necesitamos para cumplir con el encargo?</li>
+				<li>¿La librería "Spotipy" tiene una función específica para solicitar los datos?</li>
+				<li>¿Se neceita algún tipos de autenticación de acceso a la API?</li>
+				<li>¿Hay algún tipo de limitación de cantidad de peticiones o datos?</li>
+				<li>¿Qué datos necesito para realizar la petición a la API?</li>
+				<li>¿En qué formato nos devuelve los datos la API de Spotify?</li>
+				<li>¿Qué datos adicionales tenemos disponibles?</li>
+				<li>¿Cómo puedo combinar estos datos para generar una visualización?</li>
+			</ol>
+			<h2>Ejemplo de implementación</h2>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">import</span> <span style="color: #f8f8f2">spotipy</span>
+<span style="color: #f92672">from</span> <span style="color: #f8f8f2">spotipy.oauth2</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">SpotifyClientCredentials</span>
+
+<span style="color: #75715e">## Reference</span>
+
+<span style="color: #f8f8f2">api_client_id</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;&quot;</span>
+<span style="color: #f8f8f2">api_client_secret</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;&quot;</span> 
+
+<span style="color: #f8f8f2">spotify</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">spotipy</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Spotify(</span>
+<span style="color: #f8f8f2">client_credentials_manager</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">SpotifyClientCredentials(</span>
+	<span style="color: #f8f8f2">api_client_id,</span>
+	<span style="color: #f8f8f2">api_client_secret</span>
+	<span style="color: #f8f8f2">)</span>
+	<span style="color: #f8f8f2">)</span>
+
+<span style="color: #f8f8f2">results</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">spotify</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">artist_related_artists(</span><span style="color: #e6db74">&quot;5lkiCO9UQ8B23dZ1o0UV4m&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(results)</span>
+	</pre></div>
+		<h2>Ejemplo de resupuesta (JSON)</h2>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">{</span>
+	<span style="color: #e6db74">&quot;artists&quot;</span><span style="color: #f8f8f2">:[</span>
+	<span style="color: #f8f8f2">{</span>
+	   <span style="color: #e6db74">&quot;external_urls&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;spotify&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://open.spotify.com/artist/0vn7UBvSQECKJm2817Yf1P&quot;</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;followers&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;None&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;total&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">2060238</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;genres&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #e6db74">&quot;classic rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;folk&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;folk rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;mellow gold&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;singer-songwriter&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;soft rock&quot;</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://api.spotify.com/v1/artists/0vn7UBvSQECKJm2817Yf1P&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;0vn7UBvSQECKJm2817Yf1P&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;images&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">640</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/ab6761610000e5eb5921cb8f2ec7bf6b5e725bcc&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">640</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">320</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/ab676161000051745921cb8f2ec7bf6b5e725bcc&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">320</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">160</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/ab6761610000f1785921cb8f2ec7bf6b5e725bcc&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">160</span>
+		  <span style="color: #f8f8f2">}</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;James Taylor&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;popularity&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">66</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;type&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;artist&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;uri&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;spotify:artist:0vn7UBvSQECKJm2817Yf1P&quot;</span>
+	<span style="color: #f8f8f2">},</span>
+	<span style="color: #f8f8f2">{</span>
+	   <span style="color: #e6db74">&quot;external_urls&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;spotify&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://open.spotify.com/artist/2pdvghEHZJtgSXZ7cvNLou&quot;</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;followers&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;None&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;total&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1562225</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;genres&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #e6db74">&quot;album rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;blues rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;classic rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;country rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;folk&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;folk rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;mellow gold&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;roots rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;soft rock&quot;</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://api.spotify.com/v1/artists/2pdvghEHZJtgSXZ7cvNLou&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;2pdvghEHZJtgSXZ7cvNLou&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;images&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">619</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/b9c086901cca94cab20e8fcdc35bd79c7b39526a&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">999</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">396</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/7d26d42a2969e495d8917b077501e02fca5da5e0&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">639</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">124</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/8ee7e65ec865603c08b0f6af1eeb0dc944d7872d&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">200</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">40</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/f10a24a75fe763187b870479c4c2df81ce2923f8&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">64</span>
+		  <span style="color: #f8f8f2">}</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;Crosby, Stills &amp; Nash&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;popularity&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">55</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;type&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;artist&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;uri&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;spotify:artist:2pdvghEHZJtgSXZ7cvNLou&quot;</span>
+	<span style="color: #f8f8f2">},</span>
+	<span style="color: #f8f8f2">{</span>
+	   <span style="color: #e6db74">&quot;external_urls&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;spotify&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://open.spotify.com/artist/5dbuFbrHa1SJlQhQX9OUJ2&quot;</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;followers&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;None&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;total&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1272253</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;genres&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #e6db74">&quot;album rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;art rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;classic rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;country rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;folk rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;heartland rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;mellow gold&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;pop rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;singer-songwriter&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;soft rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;yacht rock&quot;</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://api.spotify.com/v1/artists/5dbuFbrHa1SJlQhQX9OUJ2&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;5dbuFbrHa1SJlQhQX9OUJ2&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;images&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">999</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/e3bb4b09ffbf0a8f420ae14837208056cf64451e&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1000</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">639</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/6318212047d0b26c06f21149e525257e8a161651&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">640</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/a22e344406fe749c6387d9f4b16050573094ac38&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">200</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">64</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/821339d1b617aed1aa3dee28fef7bf30aad1327b&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">64</span>
+		  <span style="color: #f8f8f2">}</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;Don Henley&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;popularity&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">63</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;type&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;artist&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;uri&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;spotify:artist:5dbuFbrHa1SJlQhQX9OUJ2&quot;</span>
+	<span style="color: #f8f8f2">},</span>
+	<span style="color: #f8f8f2">{</span>
+	   <span style="color: #e6db74">&quot;external_urls&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;spotify&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://open.spotify.com/artist/0fyqyjD7pbaVzbu94ylWQR&quot;</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;followers&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;None&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;total&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">200327</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;genres&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #e6db74">&quot;album rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;classic rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;country rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;folk&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;folk rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;heartland rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;mellow gold&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;roots rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;singer-songwriter&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;soft rock&quot;</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://api.spotify.com/v1/artists/0fyqyjD7pbaVzbu94ylWQR&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;0fyqyjD7pbaVzbu94ylWQR&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;images&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">660</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/6747986aaed37e5ba0ebe69d8f4a1efde0892e19&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">999</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">423</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/8f808de6ce1199bf374db32a04283d79e5bb4673&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">640</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">132</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/043223d93deee381510a5ffef6fbce100a6d04e2&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">200</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">42</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/9e860268fcc8462c1580cdc3f5eca5f1343e3474&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">64</span>
+		  <span style="color: #f8f8f2">}</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;Poco&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;popularity&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">48</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;type&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;artist&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;uri&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;spotify:artist:0fyqyjD7pbaVzbu94ylWQR&quot;</span>
+	<span style="color: #f8f8f2">},</span>
+	<span style="color: #f8f8f2">{</span>
+	   <span style="color: #e6db74">&quot;external_urls&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;spotify&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://open.spotify.com/artist/7emRV8AluG3d4e5T0DZiK9&quot;</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;followers&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;None&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;total&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">388267</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;genres&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #e6db74">&quot;album rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;classic rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;country rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;folk&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;folk rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;mellow gold&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;soft rock&quot;</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://api.spotify.com/v1/artists/7emRV8AluG3d4e5T0DZiK9&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;7emRV8AluG3d4e5T0DZiK9&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;images&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">640</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/ab6761610000e5ebb64e91f808f376f77b0763b3&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">640</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">320</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/ab67616100005174b64e91f808f376f77b0763b3&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">320</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">160</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/ab6761610000f178b64e91f808f376f77b0763b3&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">160</span>
+		  <span style="color: #f8f8f2">}</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;Loggins &amp; Messina&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;popularity&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">53</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;type&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;artist&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;uri&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;spotify:artist:7emRV8AluG3d4e5T0DZiK9&quot;</span>
+	<span style="color: #f8f8f2">},</span>
+	<span style="color: #f8f8f2">{</span>
+	   <span style="color: #e6db74">&quot;external_urls&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;spotify&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://open.spotify.com/artist/3mY9Ii0cL5SQxpOTAm8SHx&quot;</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;followers&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;None&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;total&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">335875</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;genres&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #e6db74">&quot;album rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;art rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;blues rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;classic rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;country rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;folk&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;folk rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;heartland rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;mellow gold&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;piano rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;pop rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;roots rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;singer-songwriter&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;soft rock&quot;</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://api.spotify.com/v1/artists/3mY9Ii0cL5SQxpOTAm8SHx&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;3mY9Ii0cL5SQxpOTAm8SHx&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;images&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1019</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/2d8839c21b4ea927a63e3e25cd5cbf78869f5adf&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1000</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">652</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/8720db0eca2c0b28b279aaab27b1b9b5a452ff7f&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">640</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">204</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/bd671e4b74ffac449993f3d8c089e1e7c9ad8af7&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">200</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">65</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/0dfb987695eb8fd97c74828a6264d104c8294826&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">64</span>
+		  <span style="color: #f8f8f2">}</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;Warren Zevon&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;popularity&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">57</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;type&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;artist&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;uri&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;spotify:artist:3mY9Ii0cL5SQxpOTAm8SHx&quot;</span>
+	<span style="color: #f8f8f2">},</span>
+	<span style="color: #f8f8f2">{</span>
+	   <span style="color: #e6db74">&quot;external_urls&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;spotify&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://open.spotify.com/artist/1R6Hx1tJ2VOUyodEpC12xM&quot;</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;followers&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;None&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;total&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1058667</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;genres&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #e6db74">&quot;album rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;classic rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;country rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;folk&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;folk rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;mellow gold&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;singer-songwriter&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;soft rock&quot;</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://api.spotify.com/v1/artists/1R6Hx1tJ2VOUyodEpC12xM&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;1R6Hx1tJ2VOUyodEpC12xM&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;images&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">990</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/9f9b40704e3361c93ea8a8b7a86a5d9ee755466e&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1000</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">634</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/a231c19bbf27417afaf99cad6ef372054b38da28&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">640</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">198</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/f2374db73b0a0722f78b84ff88d26ab32472938b&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">200</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">63</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/ac6acaf00e9a2201a9a9785a1bd83d1419545f1f&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">64</span>
+		  <span style="color: #f8f8f2">}</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;Jim Croce&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;popularity&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">62</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;type&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;artist&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;uri&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;spotify:artist:1R6Hx1tJ2VOUyodEpC12xM&quot;</span>
+	<span style="color: #f8f8f2">},</span>
+	<span style="color: #f8f8f2">{</span>
+	   <span style="color: #e6db74">&quot;external_urls&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;spotify&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://open.spotify.com/artist/0cA5Tg15TwARIRZeiNT1RO&quot;</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;followers&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;None&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;total&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">612728</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;genres&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #e6db74">&quot;adult standards&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;classic rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;country rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;folk&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;folk rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;mellow gold&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;singer-songwriter&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;soft rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;yacht rock&quot;</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://api.spotify.com/v1/artists/0cA5Tg15TwARIRZeiNT1RO&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;0cA5Tg15TwARIRZeiNT1RO&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;images&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1265</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/148ea3256748ffab57e4dae70ce1427e35a1f8a9&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1000</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">810</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/a0157cda4fb9de5b010aad96ac276e6b6ff0472a&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">640</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">253</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/833ed91622a2e965cf4364a3f06be6737c7c89bd&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">200</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">81</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/8805addbab68b4c7530cf0d3b1fc74775edee820&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">64</span>
+		  <span style="color: #f8f8f2">}</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;Dan Fogelberg&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;popularity&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">54</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;type&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;artist&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;uri&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;spotify:artist:0cA5Tg15TwARIRZeiNT1RO&quot;</span>
+	<span style="color: #f8f8f2">},</span>
+	<span style="color: #f8f8f2">{</span>
+	   <span style="color: #e6db74">&quot;external_urls&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;spotify&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://open.spotify.com/artist/23rleGXVOVVgTk3xgtmfE4&quot;</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;followers&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;None&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;total&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">642519</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;genres&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #e6db74">&quot;album rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;canadian country&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;canadian singer-songwriter&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;classic rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;country rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;folk&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;folk rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;mellow gold&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;roots rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;singer-songwriter&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;soft rock&quot;</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://api.spotify.com/v1/artists/23rleGXVOVVgTk3xgtmfE4&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;23rleGXVOVVgTk3xgtmfE4&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;images&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1000</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/4786e7b7378ca4420a75b60531c333f40e9e6b6a&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1000</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">640</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/bd761ad35b18b3b01f28ef55a4929d97957d1c23&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">640</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/17c72a16e6dd38beb6d10996c123359ffe6f749a&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">200</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">64</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/a19302f7bd3dfcf2aab56a82e10d9e81e20daf31&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">64</span>
+		  <span style="color: #f8f8f2">}</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;Gordon Lightfoot&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;popularity&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">59</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;type&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;artist&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;uri&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;spotify:artist:23rleGXVOVVgTk3xgtmfE4&quot;</span>
+	<span style="color: #f8f8f2">},</span>
+	<span style="color: #f8f8f2">{</span>
+	   <span style="color: #e6db74">&quot;external_urls&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;spotify&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://open.spotify.com/artist/1MXwwmS2JpmsHZhdMeOL2s&quot;</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;followers&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;None&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;total&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">199891</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;genres&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #e6db74">&quot;album rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;classic rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;country rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;folk&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;folk rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;heartland rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;mellow gold&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;roots rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;singer-songwriter&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;soft rock&quot;</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://api.spotify.com/v1/artists/1MXwwmS2JpmsHZhdMeOL2s&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;1MXwwmS2JpmsHZhdMeOL2s&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;images&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">480</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/b7213c1a1ed25d51a1b666ce057663cd92c0a76b&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">480</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/8a7633fe877372b873e9a561d2d34c77de75d3c3&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">200</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">64</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/fc68f3a0feb2b11c9d6ec853a62a466b5bea3f74&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">64</span>
+		  <span style="color: #f8f8f2">}</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;Pure Prairie League&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;popularity&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">50</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;type&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;artist&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;uri&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;spotify:artist:1MXwwmS2JpmsHZhdMeOL2s&quot;</span>
+	<span style="color: #f8f8f2">},</span>
+	<span style="color: #f8f8f2">{</span>
+	   <span style="color: #e6db74">&quot;external_urls&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;spotify&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://open.spotify.com/artist/46njgd2Rq9tZc4ZjeQMgbh&quot;</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;followers&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;None&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;total&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">639257</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;genres&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #e6db74">&quot;adult standards&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;album rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;art rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;classic rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;country rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;folk&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;folk rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;heartland rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;mellow gold&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;singer-songwriter&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;soft rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;yacht rock&quot;</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://api.spotify.com/v1/artists/46njgd2Rq9tZc4ZjeQMgbh&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;46njgd2Rq9tZc4ZjeQMgbh&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;images&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">640</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/ab6761610000e5eb143feea39a3275bfc4ea5f11&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">640</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">320</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/ab67616100005174143feea39a3275bfc4ea5f11&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">320</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">160</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/ab6761610000f178143feea39a3275bfc4ea5f11&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">160</span>
+		  <span style="color: #f8f8f2">}</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;Boz Scaggs&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;popularity&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">59</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;type&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;artist&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;uri&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;spotify:artist:46njgd2Rq9tZc4ZjeQMgbh&quot;</span>
+	<span style="color: #f8f8f2">},</span>
+	<span style="color: #f8f8f2">{</span>
+	   <span style="color: #e6db74">&quot;external_urls&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;spotify&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://open.spotify.com/artist/2iM28IgKg89v1o7BTQAVPo&quot;</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;followers&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;None&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;total&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">320354</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;genres&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #e6db74">&quot;album rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;classic rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;country rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;folk rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;heartland rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;mellow gold&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;piano rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;pop rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;soft rock&quot;</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://api.spotify.com/v1/artists/2iM28IgKg89v1o7BTQAVPo&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;2iM28IgKg89v1o7BTQAVPo&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;images&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">640</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/ab6761610000e5ebede2122c4ca030de3a67f3ad&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">640</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">320</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/ab67616100005174ede2122c4ca030de3a67f3ad&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">320</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">160</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/ab6761610000f178ede2122c4ca030de3a67f3ad&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">160</span>
+		  <span style="color: #f8f8f2">}</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;Bruce Hornsby&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;popularity&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">55</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;type&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;artist&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;uri&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;spotify:artist:2iM28IgKg89v1o7BTQAVPo&quot;</span>
+	<span style="color: #f8f8f2">},</span>
+	<span style="color: #f8f8f2">{</span>
+	   <span style="color: #e6db74">&quot;external_urls&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;spotify&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://open.spotify.com/artist/2DWQX92uew7DlsgN0yD775&quot;</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;followers&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;None&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;total&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">146555</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;genres&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #e6db74">&quot;album rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;blues rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;classic rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;country rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;folk&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;folk rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;mellow gold&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;roots rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;singer-songwriter&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;soft rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;southern rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;yacht rock&quot;</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://api.spotify.com/v1/artists/2DWQX92uew7DlsgN0yD775&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;2DWQX92uew7DlsgN0yD775&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;images&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1068</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/5bc730db2f1e28c5be0dd5a97e33eb74a802793c&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1000</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">684</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/12bb289439585710d9d3fec856d27bc76e6d2156&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">640</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">214</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/46173708dafa19713cafdbbfca8df5ca30759d06&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">200</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">68</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/285b5d0d7269c1d3b95a5c972392a9bf7069620c&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">64</span>
+		  <span style="color: #f8f8f2">}</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;Dave Mason&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;popularity&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">45</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;type&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;artist&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;uri&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;spotify:artist:2DWQX92uew7DlsgN0yD775&quot;</span>
+	<span style="color: #f8f8f2">},</span>
+	<span style="color: #f8f8f2">{</span>
+	   <span style="color: #e6db74">&quot;external_urls&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;spotify&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://open.spotify.com/artist/44NX2ffIYHr6D4n7RaZF7A&quot;</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;followers&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;None&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;total&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">2522547</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;genres&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #e6db74">&quot;classic rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;folk rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;mellow gold&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;roots rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;singer-songwriter&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;soft rock&quot;</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://api.spotify.com/v1/artists/44NX2ffIYHr6D4n7RaZF7A&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;44NX2ffIYHr6D4n7RaZF7A&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;images&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">640</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/ab6761610000e5eb5885f6c2d3ecf8e08bdfa472&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">640</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">320</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/ab676161000051745885f6c2d3ecf8e08bdfa472&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">320</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">160</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/ab6761610000f1785885f6c2d3ecf8e08bdfa472&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">160</span>
+		  <span style="color: #f8f8f2">}</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;Van Morrison&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;popularity&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">71</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;type&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;artist&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;uri&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;spotify:artist:44NX2ffIYHr6D4n7RaZF7A&quot;</span>
+	<span style="color: #f8f8f2">},</span>
+	<span style="color: #f8f8f2">{</span>
+	   <span style="color: #e6db74">&quot;external_urls&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;spotify&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://open.spotify.com/artist/6jdObwsrIjSRnBbMw6lPBj&quot;</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;followers&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;None&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;total&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">575978</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;genres&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #e6db74">&quot;adult standards&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;album rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;bubblegum pop&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;classic rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;country rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;folk rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;mellow gold&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;soft rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;yacht rock&quot;</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://api.spotify.com/v1/artists/6jdObwsrIjSRnBbMw6lPBj&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;6jdObwsrIjSRnBbMw6lPBj&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;images&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1000</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/7e0eb81433b92ae11894a35a53aa870be824d772&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1000</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">640</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/76ccb803ba5113aa822077dd9f1c3187ca9d323d&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">640</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/b710389b2afcc6a256cd68d8409f9fdf481f78af&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">200</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">64</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/d6c5db76d07d5fa0571e8353319da0c3ab2fdeaf&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">64</span>
+		  <span style="color: #f8f8f2">}</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;Seals and Crofts&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;popularity&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">55</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;type&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;artist&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;uri&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;spotify:artist:6jdObwsrIjSRnBbMw6lPBj&quot;</span>
+	<span style="color: #f8f8f2">},</span>
+	<span style="color: #f8f8f2">{</span>
+	   <span style="color: #e6db74">&quot;external_urls&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;spotify&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://open.spotify.com/artist/6clbbhnIqpHnqxwtOWcilg&quot;</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;followers&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;None&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;total&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">941452</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;genres&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #e6db74">&quot;album rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;art rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;classic rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;country rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;folk rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;mellow gold&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;soft rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;yacht rock&quot;</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://api.spotify.com/v1/artists/6clbbhnIqpHnqxwtOWcilg&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;6clbbhnIqpHnqxwtOWcilg&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;images&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">640</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/ab6761610000e5eb8d20c06dc6316ee8d35b351e&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">640</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">320</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/ab676161000051748d20c06dc6316ee8d35b351e&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">320</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">160</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/ab6761610000f1788d20c06dc6316ee8d35b351e&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">160</span>
+		  <span style="color: #f8f8f2">}</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;Little River Band&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;popularity&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">59</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;type&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;artist&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;uri&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;spotify:artist:6clbbhnIqpHnqxwtOWcilg&quot;</span>
+	<span style="color: #f8f8f2">},</span>
+	<span style="color: #f8f8f2">{</span>
+	   <span style="color: #e6db74">&quot;external_urls&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;spotify&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://open.spotify.com/artist/1tfXh4XxILEuMU2qZupFn8&quot;</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;followers&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;None&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;total&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">171263</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;genres&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #e6db74">&quot;album rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;classic rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;country rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;folk rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;mellow gold&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;soft rock&quot;</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://api.spotify.com/v1/artists/1tfXh4XxILEuMU2qZupFn8&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;1tfXh4XxILEuMU2qZupFn8&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;images&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">640</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/ab6761610000e5eb30adcaa6c2679f09255fffa6&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">640</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">320</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/ab6761610000517430adcaa6c2679f09255fffa6&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">320</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">160</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/ab6761610000f17830adcaa6c2679f09255fffa6&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">160</span>
+		  <span style="color: #f8f8f2">}</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;Firefall&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;popularity&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">45</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;type&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;artist&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;uri&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;spotify:artist:1tfXh4XxILEuMU2qZupFn8&quot;</span>
+	<span style="color: #f8f8f2">},</span>
+	<span style="color: #f8f8f2">{</span>
+	   <span style="color: #e6db74">&quot;external_urls&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;spotify&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://open.spotify.com/artist/5gxynDEKwNDgxGJmJjZyte&quot;</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;followers&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;None&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;total&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">859950</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;genres&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #e6db74">&quot;album rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;art rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;classic rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;country rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;folk rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;heartland rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;mellow gold&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;new romantic&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;new wave pop&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;pop rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;soft rock&quot;</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://api.spotify.com/v1/artists/5gxynDEKwNDgxGJmJjZyte&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;5gxynDEKwNDgxGJmJjZyte&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;images&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1000</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/8a6cfe2373a091c0041b2bae6e576e395944eacd&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1000</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">640</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/1bd7316c847371039652c7bf59335083af10d56e&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">640</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">200</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/dca0966ec52e2802f7d199ab36c56e76c12abe82&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">200</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">64</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/267b2adbe9bedafc6855629d120279f2ea905ecd&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">64</span>
+		  <span style="color: #f8f8f2">}</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;Steve Winwood&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;popularity&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">61</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;type&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;artist&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;uri&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;spotify:artist:5gxynDEKwNDgxGJmJjZyte&quot;</span>
+	<span style="color: #f8f8f2">},</span>
+	<span style="color: #f8f8f2">{</span>
+	   <span style="color: #e6db74">&quot;external_urls&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;spotify&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://open.spotify.com/artist/35U9lQaRWSQISxQAB94Meo&quot;</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;followers&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;None&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;total&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">1396849</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;genres&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #e6db74">&quot;album rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;classic rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;country rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;folk rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;mellow gold&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;soft rock&quot;</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://api.spotify.com/v1/artists/35U9lQaRWSQISxQAB94Meo&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;35U9lQaRWSQISxQAB94Meo&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;images&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">396</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/185231175df036c1c337231e855b18a63a30b794&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">614</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">129</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/d8580fb951d1e0fdb73b9b1599056ec83f11325a&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">200</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">41</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/b807b90fc57bcee5c085edd185807e3dc0e444b7&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">64</span>
+		  <span style="color: #f8f8f2">}</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;America&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;popularity&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">64</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;type&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;artist&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;uri&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;spotify:artist:35U9lQaRWSQISxQAB94Meo&quot;</span>
+	<span style="color: #f8f8f2">},</span>
+	<span style="color: #f8f8f2">{</span>
+	   <span style="color: #e6db74">&quot;external_urls&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;spotify&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://open.spotify.com/artist/3HC7NcxQx2Yk0fWoRKJ0xF&quot;</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;followers&quot;</span><span style="color: #f8f8f2">:{</span>
+		  <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;None&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;total&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">799068</span>
+	   <span style="color: #f8f8f2">},</span>
+	   <span style="color: #e6db74">&quot;genres&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #e6db74">&quot;album rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;art rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;blues rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;classic rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;folk rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;hard rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;mellow gold&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;soft rock&quot;</span><span style="color: #f8f8f2">,</span>
+		  <span style="color: #e6db74">&quot;symphonic rock&quot;</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;href&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://api.spotify.com/v1/artists/3HC7NcxQx2Yk0fWoRKJ0xF&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;id&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;3HC7NcxQx2Yk0fWoRKJ0xF&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;images&quot;</span><span style="color: #f8f8f2">:[</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">640</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/ab6761610000e5eb0a7ad2d086997db5d77d8e47&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">640</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">320</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/ab676161000051740a7ad2d086997db5d77d8e47&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">320</span>
+		  <span style="color: #f8f8f2">},</span>
+		  <span style="color: #f8f8f2">{</span>
+			 <span style="color: #e6db74">&quot;height&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">160</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;url&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;https://i.scdn.co/image/ab6761610000f1780a7ad2d086997db5d77d8e47&quot;</span><span style="color: #f8f8f2">,</span>
+			 <span style="color: #e6db74">&quot;width&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">160</span>
+		  <span style="color: #f8f8f2">}</span>
+	   <span style="color: #f8f8f2">],</span>
+	   <span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;Jefferson Starship&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;popularity&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #ae81ff">52</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;type&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;artist&quot;</span><span style="color: #f8f8f2">,</span>
+	   <span style="color: #e6db74">&quot;uri&quot;</span><span style="color: #f8f8f2">:</span><span style="color: #e6db74">&quot;spotify:artist:3HC7NcxQx2Yk0fWoRKJ0xF&quot;</span>
+	<span style="color: #f8f8f2">}</span>
+ <span style="color: #f8f8f2">]</span>
+<span style="color: #f8f8f2">}</span>
+</pre></div>
+
+	
+			<footer>
+			<hr>
+			<p>
+                Adrià Padila<br>
+                adrian.padilla@uab.cat<br>
+                <b>Universitat Autònoma de Barcelona</b>
+            </p>
+
+			</footer>
+		</div>
+	</body>
+
+
+
+</html>

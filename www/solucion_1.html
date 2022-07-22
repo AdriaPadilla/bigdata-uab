@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<title>Solución Ejercicio 1</title>
+		<link href="./styles/style.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+
+		<div class="container">
+            <header>
+                    <p><a href="./index.html">Regresar al Inicio</a>
+            </header>
+
+
+			<h1>Ejercicio 1</h1>
+				<ol>
+ 					<li>¿Cuantas personas han asistido a las jornadas de puertas abiertas?</li>
+ 					<li>¿Cuantas personas han asistido a más de dos sesiones?</li>
+ 					<li>¿Qué porcentaje de los asistentes accede a más de dos sesiones?</li>
+				</ol>
+			<p><b>Solución al ejercicio </b><p>
+			<p>La mayoría de las preguntas se pueden resolver usando las funciones <i>set()</i>, <i>list()</i> y <i>count()</i>.</p>
+			<p>Código:</p>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">llista</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span>
+    <span style="color: #e6db74">&quot;david&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;dani&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;marta&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;jaume&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;adria&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;carla&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;joan&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;pere&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;carla&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;pere&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;adria&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;quico&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;pere&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;joan&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;agustí&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;adria&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;joan&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;adria&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;siscu&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;carles&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;dani&quot;</span><span style="color: #f8f8f2">,</span>
+    <span style="color: #e6db74">&quot;carla&quot;</span>
+    <span style="color: #f8f8f2">]</span>
+
+<span style="color: #75715e"># ¿Quanta gent ha assistit?</span>
+<span style="color: #f8f8f2">unics</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">set(llista)</span>
+
+<span style="color: #75715e"># Quants han assistit a més de dues sessions?</span>
+
+<span style="color: #f8f8f2">contador</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span>
+<span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">nom</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">unics:</span>
+    <span style="color: #f8f8f2">aparicions</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">llista</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">count(nom)</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">aparicions</span> <span style="color: #f92672">&gt;</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">:</span>
+        <span style="color: #f8f8f2">contador</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">contador</span> <span style="color: #f92672">+</span> <span style="color: #ae81ff">1</span>
+
+<span style="color: #75715e"># percentatge</span>
+<span style="color: #f8f8f2">percentatge</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">round(</span><span style="color: #ae81ff">100</span><span style="color: #f92672">*</span><span style="color: #f8f8f2">(contador</span><span style="color: #f92672">/</span><span style="color: #f8f8f2">len(unics)),</span> <span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)</span>
+
+<span style="color: #75715e"># Print resultats</span>
+<span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Han assistit un total de:&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">len(unics))</span>
+<span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;Han assistit a mes de 2 sessions:&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">contador)</span>
+<span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(f</span><span style="color: #e6db74">&quot;percentatge mes de 2 sessions: {percentatge}%&quot;</span><span style="color: #f8f8f2">)</span>
+
+
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #f8f8f2">Han</span> <span style="color: #f8f8f2">assistit</span> <span style="color: #f8f8f2">un</span> <span style="color: #f8f8f2">total</span> <span style="color: #f8f8f2">de:</span> <span style="color: #ae81ff">12</span>
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #f8f8f2">Han</span> <span style="color: #f8f8f2">assistit</span> <span style="color: #f8f8f2">a</span> <span style="color: #f8f8f2">mes</span> <span style="color: #f8f8f2">de</span> <span style="color: #ae81ff">2</span> <span style="color: #f8f8f2">sessions:</span> <span style="color: #ae81ff">4</span>
+<span style="color: #f92672">&gt;&gt;</span> <span style="color: #f8f8f2">percentatge</span> <span style="color: #f8f8f2">mes</span> <span style="color: #f8f8f2">de</span> <span style="color: #ae81ff">2</span> <span style="color: #f8f8f2">sessions:</span> <span style="color: #ae81ff">33.33</span><span style="color: #f92672">%</span>
+</pre></div>
+
+
+			</hr>	
+			<footer>
+			<hr>
+			<p>
+                Adrià Padila<br>
+                adrian.padilla@uab.cat<br>
+                <b>Universitat Autònoma de Barcelona</b>
+            </p>
+
+			</footer>
+		</container>
+</body>
+</html>
