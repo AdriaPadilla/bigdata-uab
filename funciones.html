@@ -14,7 +14,28 @@
 
 
 			<h1>Funciones</h1>
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">lista</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&quot;adria&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;carla&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;joan&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;pere&quot;</span><span style="color: #f8f8f2">]</span>
+			<p>Las funciones en Python, al igual que en todos los lenguajes de programación, son fragmentos de código que tienen un propósito concreto y realizan una tarea específica. Las funciones sirven para agrupar partes de un programa. Una función puede recibir <i>argumentos</i> que modifican sus parámetros. La funciones se puede reutilizar para ahorrar código.</p>
+			<p>Para iniciar una función, debes usar la siguiente estructura:</p>
+
+<div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">def</span> <span style="color: #a6e22e">nombre_funcion</span><span style="color: #f8f8f2">(opcional):</span>
+    <span style="color: #f8f8f2">contenido</span> <span style="color: #f8f8f2">de</span> <span style="color: #f8f8f2">la</span> <span style="color: #f8f8f2">funcion</span>
+    <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">lo_que_sea</span>
+
+<span style="color: #f8f8f2">nombre_funcion(opcional)</span>
+</pre></div>
+
+<br>
+Sintáxis:
+<ol>
+	<li>La partícula "<i>def</i>" identifica que se está creando una función</li>
+	<li>Luego se determina el nombre de la función, que puede ser el que quieras</li>
+	<li>Es obligatorio usar los paréntesis <i>()</i>, aunque pueden dejarse vacíos si no se está pasando ningún argumento a la función.</li>
+	<li>Se cierra con dos puntos</li>
+	<li>Todo lo que está indentado dentro de la función pertenece a la función</li>
+	<li>La función puede retornar "<i>return</i> resultados"</li>
+</ol>
+<p>Aquí tienes un ejemplo de una función. Esta se llama "checker", y tiene como objetivo verificar si la variable que está recibiendo es una cadena de texto que coincide con "joan". La función se encarga de verificar si se trata, o no, de joan. Dependiendo de <i>if</i>/<i>else</i>, la variable "resultado" obtiene un valor u otro. Luego este resultado se imprime.</p>
+<div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">lista</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&quot;adria&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;carla&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;joan&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;pere&quot;</span><span style="color: #f8f8f2">]</span>
 
 <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">checker</span><span style="color: #f8f8f2">(nombre):</span>
     <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">nombre</span> <span style="color: #f92672">==</span> <span style="color: #e6db74">&quot;joan&quot;</span><span style="color: #f8f8f2">:</span>
@@ -24,13 +45,36 @@
     <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">resultado</span>
 
 <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">nombre</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">lista:</span>
-    <span style="color: #f8f8f2">check</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">checker(nombre)</span>
-    <span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(check)</span>
+    <span style="color: #f8f8f2">resultado</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">checker(nombre)</span>
+    <span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(resultado)</span>
 
 <span style="color: #f92672">&gt;&gt;</span> <span style="color: #f8f8f2">adria</span> <span style="color: #f8f8f2">No</span> <span style="color: #f8f8f2">es</span> <span style="color: #f8f8f2">joan</span>
 <span style="color: #f92672">&gt;&gt;</span> <span style="color: #f8f8f2">carla</span> <span style="color: #f8f8f2">No</span> <span style="color: #f8f8f2">es</span> <span style="color: #f8f8f2">joan</span>
 <span style="color: #f92672">&gt;&gt;</span> <span style="color: #f8f8f2">Aqui</span> <span style="color: #f8f8f2">está</span><span style="color: #f8f8f2"></span> <span style="color: #f8f8f2">Joan</span>
 <span style="color: #f92672">&gt;&gt;</span> <span style="color: #f8f8f2">pere</span> <span style="color: #f8f8f2">No</span> <span style="color: #f8f8f2">es</span> <span style="color: #f8f8f2">joan</span>
+</pre></div>
+<p>Otra forma de expresar una función que haría, más o menos, lo mismo que la anterior, es la siguiente:
+	<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">lista</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&quot;adria&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;carla&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;joan&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;pere&quot;</span><span style="color: #f8f8f2">]</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">checker</span><span style="color: #f8f8f2">():</span>
+    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">nombre</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">lista:</span>
+        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">nombre</span> <span style="color: #f92672">==</span> <span style="color: #e6db74">&quot;joan&quot;</span><span style="color: #f8f8f2">:</span>
+            <span style="color: #f8f8f2">print(</span><span style="color: #e6db74">&quot;Aqui está Joan&quot;</span><span style="color: #f8f8f2">)</span>
+        <span style="color: #66d9ef">else</span><span style="color: #f8f8f2">:</span>
+            <span style="color: #f8f8f2">print(nombre</span><span style="color: #f92672">+</span><span style="color: #e6db74">&quot; No es joan&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">checker()</span>
+</pre></div>
+<p>Tal como se ha dicho, las funciones admiten argumentos. Por ejemplo: hemos transformado la función anterior en una que admite un argumento, que es una variable donde se contiene el nombre que debe ser "checkeado".
+	<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">lista</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&quot;adria&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;carla&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;joan&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;pere&quot;</span><span style="color: #f8f8f2">]</span>
+<span style="color: #f8f8f2">nombre_a_checkear</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;carla&quot;</span>
+
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">checker</span><span style="color: #f8f8f2">(nombre_a_checkear):</span>
+    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">nombre</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">lista:</span>
+        <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">nombre</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">nombre_a_checkear:</span>
+            <span style="color: #f8f8f2">print(</span><span style="color: #e6db74">&quot;Aqui está &quot;</span><span style="color: #f92672">+</span><span style="color: #f8f8f2">nombre_a_checkear)</span>
+        <span style="color: #66d9ef">else</span><span style="color: #f8f8f2">:</span>
+            <span style="color: #f8f8f2">print(nombre</span><span style="color: #f92672">+</span><span style="color: #e6db74">&quot; No es &quot;</span><span style="color: #f92672">+</span><span style="color: #f8f8f2">nombre_a_checkear)</span>
+<span style="color: #f8f8f2">checker(nombre_a_checkear)</span>
 </pre></div>
 
 

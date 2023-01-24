@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<!-- http://hilite.me/ -->
+	<head>
+		<title>Data Viz. Big Data UAB</title>
+		<link href="./styles/style.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+
+		<div class="container">
+			<header>
+					<p><a href="./index.html">Regresar al Inicio</a>
+			</header>
+
+
+			<h1>Pandas</h1>
+			<p>Pandas es una de las librerías más usadas de Python. Recibe su nombre del acrónimo "Panel Data", y es especialmente útil en el terreno de la ciencia de datos y el machine learning, ya que permite el manejo y manipulación de grandes volúmenes de información estructurada. Además de manipular datos, esta librería posibilita la importación de datos desde múltiples fuentes: bases de datos, archivos json, csv, excel, html, etc. También permite exportar los datos a formatos que sean explotables desde otros programas.</p>
+
+			<h3><b>¿Qué es un <i>Dataframe</i>?</b></h3>
+			<p>Un <i>dataframe</i> es un conjunto de datos estructurados en filas, columnas e índices. Es similar a lo que visualmente tenemos en Excel.</p>
+			<img src="./img/dataframe.png" style="width: 100%;">
+			<br>fuente: https://pynative.com/python-pandas-dataframe/<br>
+
+			<h3>Instalar e Importar la librería</h3>
+			<p>Para poder usar Pandas, es necesario tener la libreria instalada en nuestro sistema. Para ello, abriremos una consola o terminal, y usaremos el comando: 
+				<pre>pip install pandas</pre>
+			</p>
+			<p>Una vez instalada, es necesario "iniciar" la liberaría desde nuestro código. Para ello, al inicio del documento .py, usaremos la siguiente importanción:</p>
+<div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">import</span> <span style="color: #f8f8f2">pandas</span> <span style="color: #66d9ef">as</span> <span style="color: #f8f8f2">pd</span>
+</pre></div>
+
+			<h3>Importar un <i>DataSet</i></h3>
+			<p>Para importar un conjunto de datos desde un archivo .csv o excel, usaremos la función <i>read_csv(argumentos)</i></p>
+			<p>Ejemplo: tenemos un dataset en formato CSV con los siguientes datos:</p>
+<div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">nom,punts</span>
+<span style="color: #f8f8f2">joan,</span><span style="color: #ae81ff">2</span>
+<span style="color: #f8f8f2">carles,</span><span style="color: #ae81ff">3</span>
+<span style="color: #f8f8f2">adria,</span><span style="color: #ae81ff">10</span>
+<span style="color: #f8f8f2">esther,</span><span style="color: #ae81ff">17</span>
+<span style="color: #f8f8f2">claudia,</span><span style="color: #ae81ff">18</span>
+<span style="color: #f8f8f2">jaume,</span><span style="color: #ae81ff">12</span>
+<span style="color: #f8f8f2">Laura,</span><span style="color: #ae81ff">14</span>
+<span style="color: #f8f8f2">Quim,</span><span style="color: #ae81ff">6</span>
+</pre></div>
+<p>Podemos importarlo con el siguiente código:</p>
+<div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">import</span> <span style="color: #f8f8f2">pandas</span> <span style="color: #66d9ef">as</span> <span style="color: #f8f8f2">pd</span>
+
+<span style="color: #f8f8f2">dataframe</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">pd</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">read_csv(</span><span style="color: #e6db74">&quot;ejemplo.csv&quot;</span><span style="color: #f8f8f2">)</span>
+
+<span style="color: #f8f8f2">print(dataframe)</span>
+
+</pre></div>
+<div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">       <span style="color: #f8f8f2">nom</span>  <span style="color: #f8f8f2">punts</span>
+<span style="color: #ae81ff">0</span>     <span style="color: #f8f8f2">joan</span>      <span style="color: #ae81ff">2</span>
+<span style="color: #ae81ff">1</span>   <span style="color: #f8f8f2">carles</span>      <span style="color: #ae81ff">3</span>
+<span style="color: #ae81ff">2</span>    <span style="color: #f8f8f2">adria</span>     <span style="color: #ae81ff">10</span>
+<span style="color: #ae81ff">3</span>   <span style="color: #f8f8f2">esther</span>     <span style="color: #ae81ff">17</span>
+<span style="color: #ae81ff">4</span>  <span style="color: #f8f8f2">claudia</span>     <span style="color: #ae81ff">18</span>
+<span style="color: #ae81ff">5</span>    <span style="color: #f8f8f2">jaume</span>     <span style="color: #ae81ff">12</span>
+<span style="color: #ae81ff">6</span>    <span style="color: #f8f8f2">Laura</span>     <span style="color: #ae81ff">14</span>
+<span style="color: #ae81ff">7</span>     <span style="color: #f8f8f2">Quim</span>      <span style="color: #ae81ff">6</span>
+</pre></div>
+
+
+
+			<footer>
+			<hr>	
+			<p>Adrià Padila</p>
+			</footer>
+		</div>
+	</body>
+
+
+
+</html>

@@ -9,6 +9,10 @@ body {
 	max-width: 100%;
 }
 
+header {
+	border-bottom: 2px solid #e7e7e7;
+}
+
 .container img {
 	max-width: 100%;
 }
@@ -19,9 +23,14 @@ h1, h2, h3 {
 	line-height: 1.5em;
 }
 
+
+/*
 h1 {
 	border-top: 2px solid #e7e7e7;
 	padding-top: 50px;
+*/
+
+
 }
 h2::after {
 	content: 

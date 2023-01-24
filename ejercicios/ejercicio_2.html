@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <!-- http://hilite.me/ -->
+    <head>
+        <title>Data Viz. Big Data UAB</title>
+        <link href="../styles/style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                    <p><a href="../index.html">Regresar al Inicio</a>
+            </header>
+                    
+		
+        		<h1 id="ejer">Ejercicio 2</h1>
+				
+<div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">import</span> <span style="color: #f8f8f2">pandas</span> <span style="color: #66d9ef">as</span> <span style="color: #f8f8f2">pd</span>
+
+<span style="color: #f8f8f2">assistents</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&quot;carme&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;raúl&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;pau&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;pep&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;carles&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;julia&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;julia&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;julia&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;carme&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;joan&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;pep&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;joan&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;carme&quot;</span><span style="color: #f8f8f2">]</span>
+<span style="color: #f8f8f2">llista_temp</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[]</span>
+
+<span style="color: #f8f8f2">unics</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">set(assistents)</span>
+
+<span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">a</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">unics:</span>
+    <span style="color: #f8f8f2">persona</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">a</span>
+    <span style="color: #f8f8f2">aparicions</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">assistents</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">count(a)</span>
+    <span style="color: #f8f8f2">tupla</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(persona,</span> <span style="color: #f8f8f2">aparicions)</span>
+    <span style="color: #f8f8f2">llista_temp</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">append(tupla)</span>
+
+<span style="color: #f8f8f2">print(llista_temp)</span>
+
+<span style="color: #f8f8f2">df</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">pd</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">DataFrame(list(llista_temp),</span> <span style="color: #f8f8f2">columns</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">[</span><span style="color: #e6db74">&quot;assistents&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;sessions&quot;</span><span style="color: #f8f8f2">])</span>
+
+<span style="color: #f8f8f2">df[</span><span style="color: #e6db74">&quot;promig&quot;</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">sum(df</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">sessions)</span><span style="color: #f92672">/</span><span style="color: #f8f8f2">len(df)</span>
+<span style="color: #f8f8f2">df[</span><span style="color: #e6db74">&quot;desviacio&quot;</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">df[</span><span style="color: #e6db74">&quot;sessions&quot;</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">-</span><span style="color: #f8f8f2">df[</span><span style="color: #e6db74">&quot;promig&quot;</span><span style="color: #f8f8f2">]</span>
+
+<span style="color: #f8f8f2">print(df)</span>
+</pre></div>
+
+
+
+
+
+
+
+
+                
+			<footer>
+			<hr>
+			<p>
+                Adrià Padila<br>
+                adrian.padilla@uab.cat<br>
+                <b>Universitat Autònoma de Barcelona</b>
+            </p>
+
+			</footer>
+		</div>
+	</body>
+</html>
