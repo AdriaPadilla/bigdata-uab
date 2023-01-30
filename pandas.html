@@ -60,7 +60,50 @@
 <span style="color: #ae81ff">6</span>    <span style="color: #f8f8f2">Laura</span>     <span style="color: #ae81ff">14</span>
 <span style="color: #ae81ff">7</span>     <span style="color: #f8f8f2">Quim</span>      <span style="color: #ae81ff">6</span>
 </pre></div>
+<h3>Filtrado de datasets (<i>subset</i>)</h3>
+<p>Existen 2 métodos para realizar filtrados de datasets. Cada uno de ellos puede ser útil en un momento dado, pero debes tener en cuenta que su uso no solo depende de la utilidad, sino de la viabilidad a nivel de "recursos" de sistema que requieren.</p>
+<h4>Método 1: Filtado con uso de <i>loc</i></h4>
+<p>Este método consiste en establecer un valor a encontrar, ya sea numérico o string, y filtrar el dataset completo para generar un segundo dataset con la información que estamos buscando.</p>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">import</span> <span style="color: #f8f8f2">pandas</span> <span style="color: #66d9ef">as</span> <span style="color: #f8f8f2">pd</span>
 
+<span style="color: #f8f8f2">persona_a_encontrar</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;claudia&quot;</span>
+
+<span style="color: #f8f8f2">dataframe</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">pd</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">read_csv(</span><span style="color: #e6db74">&quot;ejemplo.csv&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">print(</span><span style="color: #e6db74">&quot;dataset completo:&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">print(dataframe)</span>
+
+<span style="color: #f8f8f2">df_filtrada</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">dataframe</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">loc[dataframe[</span><span style="color: #e6db74">&quot;nom&quot;</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">==</span> <span style="color: #f8f8f2">persona_a_encontrar]</span>
+
+<span style="color: #f8f8f2">print(</span><span style="color: #e6db74">&quot;dataset Filtrado:&quot;</span><span style="color: #f8f8f2">)</span>
+<span style="color: #f8f8f2">print(df_filtrada)</span>
+
+
+
+<span style="color: #f8f8f2">dataset</span> <span style="color: #f8f8f2">completo:</span>
+        <span style="color: #f8f8f2">nom</span>  <span style="color: #f8f8f2">punts</span>
+<span style="color: #ae81ff">0</span>      <span style="color: #f8f8f2">joan</span>      <span style="color: #ae81ff">2</span>
+<span style="color: #ae81ff">1</span>    <span style="color: #f8f8f2">carles</span>      <span style="color: #ae81ff">3</span>
+<span style="color: #ae81ff">2</span>     <span style="color: #f8f8f2">adria</span>     <span style="color: #ae81ff">10</span>
+<span style="color: #ae81ff">3</span>    <span style="color: #f8f8f2">esther</span>     <span style="color: #ae81ff">17</span>
+<span style="color: #ae81ff">4</span>   <span style="color: #f8f8f2">claudia</span>     <span style="color: #ae81ff">18</span>
+<span style="color: #ae81ff">5</span>     <span style="color: #f8f8f2">jaume</span>     <span style="color: #ae81ff">12</span>
+<span style="color: #ae81ff">6</span>     <span style="color: #f8f8f2">Laura</span>     <span style="color: #ae81ff">14</span>
+<span style="color: #ae81ff">7</span>      <span style="color: #f8f8f2">Quim</span>      <span style="color: #ae81ff">6</span>
+<span style="color: #ae81ff">8</span>   <span style="color: #f8f8f2">claudia</span>     <span style="color: #ae81ff">25</span>
+<span style="color: #ae81ff">9</span>      <span style="color: #f8f8f2">joan</span>      <span style="color: #ae81ff">3</span>
+<span style="color: #ae81ff">10</span>    <span style="color: #f8f8f2">adria</span>     <span style="color: #ae81ff">11</span>
+<span style="color: #ae81ff">11</span>   <span style="color: #f8f8f2">esther</span>      <span style="color: #ae81ff">9</span>
+<span style="color: #ae81ff">12</span>   <span style="color: #f8f8f2">carles</span>      <span style="color: #ae81ff">4</span>
+<span style="color: #ae81ff">13</span>    <span style="color: #f8f8f2">jaume</span>     <span style="color: #ae81ff">23</span>
+<span style="color: #ae81ff">14</span>    <span style="color: #f8f8f2">Laura</span>     <span style="color: #ae81ff">22</span>
+<span style="color: #ae81ff">15</span>     <span style="color: #f8f8f2">Quim</span>     <span style="color: #ae81ff">26</span>
+
+
+<span style="color: #f8f8f2">dataset</span> <span style="color: #f8f8f2">Filtrado:</span>
+       <span style="color: #f8f8f2">nom</span>  <span style="color: #f8f8f2">punts</span>
+<span style="color: #ae81ff">4</span>  <span style="color: #f8f8f2">claudia</span>     <span style="color: #ae81ff">18</span>
+<span style="color: #ae81ff">8</span>  <span style="color: #f8f8f2">claudia</span>     <span style="color: #ae81ff">25</span>
+</pre></div>
 
 
 			<footer>
