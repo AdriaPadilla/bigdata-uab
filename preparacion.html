@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<!-- http://hilite.me/ -->
+	<head>
+		<title>Data Viz. Big Data UAB</title>
+		<link href="./styles/style.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+
+		<div class="container">
+			<header>
+					<p><a href="./index.html">Regresar al Inicio</a>
+			</header>
+			<h1>Preparación</h1>
+			<h2>Instalación de máquina virtual</h2>
+			<h3>¿Por qué necesitamos una máquina virtual?</h3>
+			<p>Entre los muchos objetivos de esta asignatura está el de "ofrecer" a los alumnos escenarios de trabajo "reales". Esto implica, además de manejar código y trabajar con datos "puros", aprender a moverse y administrar entornos de servidor y bases de datos. Como ya sospechas, no disponemos de servidores reales: tienen un coste muy elevado y necesitan mantenimiento. Pero también resultaria imprudente permitir que muchas personas accedan a un equipo de estas características. Cualquier fallo o error podría destruir todo el sistema. Una infraestructura real no es viable para el proceso de aprendizaje: debemos disponer de un entorno controlado donde cometer errores sin riesgo.</p>
+
+			<p>Para resolver este inconveniente, cada uno de vosotros deberá crear y administrar una máquina virtual con un sistema operativo Linux, donde alojaremos las bases de datos. Esto permitirá un aprendizaje individualizado, y cada uno será responsable de su sistema. Si cometéis un error no dañaréis nada. A la práctica <b>no existe diferencia alguna entre acceder a una máquina virtual y hacerlo a un servidor real</b>. Además, gracias a esto aprenderás a:</p>
+			<ol>
+				<li>Trabajar con entornos Linux.</li>
+				<li>Comandos básicos y avanzados de Terminal.</li>
+				<li>A crear, organizar y gestionar bases de datos MySQL (MariaDB).</li>
+				<li>A crear un servidor de datos.</li>
+				<li>A transferir datos desde un servidor remoto a tu ordenador.</li>
+				<li>A crear scripts que te permitan automatizar procesos.</li>
+				<li>A crear eventos con "cron" para programar procesos recurrentes.</li>
+			</ol>
+			<h3>Paso 0: Hardware necesario</h3>
+			<p>Existen dos problemas importantes que afectan a los requisitos de "hardware" para el trabajo que vamos a realizar en esta asignatura. Por un lado, las máquinas virtuales requieren una cantidad razonable de espacio en disco: deben tener el tamaño suficiente como para poder instalar el Sistema Operativo, pero también un margen de memória para poder operar con los archivos, alojar datos, etc. Una máquina virtual simple puede necesitar 10GB de espacio asignado, que no es mucho. Pero en nuestro caso vamos a trabajar, además, con bases de datos que van a ocupar una cantidad importante de espacio. Es posible, también, que en la máquna virtual guardemos copias de seguridad de los datos, exportados en formato .sql o .csv. Esto hará que 10GB no sean suficientes.</p>
+			<p>El segundo de los asuntos importantes es que debemos ser capaces de transportar la máquina virtual a otro ordenador. Es posible que a lo largo del curso sea necesario usar algún recurso de la Universidad. Las aulas informatizadas de la Facultat de Ciències de la Comunicació disponen de VirtualBox instalado, por lo que es posible usar nuestra máquina virtual ya creada en estos ordenadores.</p>
+			<p>Para resolver lo anterior, vamos a instalar la máquina virtual en un disco duro externo. Para ello vas a necesitar:</p>
+			<ol>
+				<li>Un disco duro externo tipo SSD. Con 120GB es más que suficiente. Su percio oscila entre los 16€ y los 35€, dependiendo de la marca y la calidad. Ten en cuenta que este disco te servirá para muchas otras cosas, y una vez finalice el curso podrás reutilizarlo.</li>
+				<li>Una carcasa de conexión para discos SSD. Los puertos USB deben ser como mínimo tipo 3.0. El coste oscila entre los 10€ y los 25€.</li>
+			</ol> 
+			<p>En total, el coste del conjunto no debería superar los 35€/40€. Si, sé que es un gasto... Pero cuando acabemos la asignatura podréis usar este dispositivo para guardar otras cosas...</p>
+			<p>Cuando tengáis este hardware, podréis seguir con los siguientes pasos.</p>
+			<h3>Paso 1: Instalar VirtualBox</h3>
+			<p>VirtualBox es un software de licencia libre que permite crear y gestionar máquinas virtuales. Funciona en Windows, Mac y Linux. El primer paso será descargar este programa. Para ello, puedes acceder a <a href="https://www.virtualbox.org/wiki/Downloads" target="_blank">https://www.virtualbox.org/wiki/Downloads</a>. Selecciona la descarga adecuada para tu sistema operativo, e instala el programa en tu ordenador.</p>
+			<img class="center" src="img/preparacion/1.png">
+			<h3>Paso 2: Crear la máquina virtual</h3>
+			<p>Para crear la máquina virtual es necesario disponer de una ISO (imágen de disco) de la distribución de Linux que vas a instalar. Puedes buscar en Google la distribución que tu quieras. De hecho, crear máquinas virtuales es una forma magnífica de testear distribuciones y jugar con Linux y otros sistemas operativos, sin renunciar nunca a tu dependencia de Windows ;).</p>
+			<p>Para esta asignatura trabajaremos con <strong>Ubuntu</strong>. La razón es simple: es la distribución de entrada para usuarios no familiarizados con Linux, la más sencilla de usar y, a su vez, incorpora gran cantidad de herramientas de série. Esto hace que también sea algo más pesada que otras distribuciones "ligeras". De hecho, hay distribuciones preparadas para cada tipo de uso, con software preinstalado y optimizadas.</p>
+			<p>Descarga Ubuntu Aqui: <a href="https://ubuntu.com/download/desktop" target="_blank">Ubuntu Desktop</a></p>
+			<p>Con la ISO ya descargada, arranca VirtualBox y selecciona la opción "Nueva"</p>
+			<img class="center" src="img/preparacion/2.png">
+			<p>-> Dale un nombre a la máquina que vas a crear. Este nombre servirá para identificar la máquina en el sistema de VirtualBox, por lo que está bien usar, por ejemplo, el nombre de la distribución y otros atributos, que ayuden a saber qué contiene.</p>
+			<p>-> Selecciona una carpeta donde se almacenará la máquina virtual. ¡¡¡Debe ser en el Disco Duro Externo!!!!</p>
+			<p>-> Selecciona la ISO que acabas de descargar.</p>
+			<p>-> Dale a "next"/"siguiente".</p>
+			<img class="center" src="img/preparacion/3.png">
+			<p>A partir de aquí, empieza el proceso de configuración de la memória y espacio asignados a la máquina virtual que estamos creando. Los parámetros dependerán en buena medida de la capacidad de vuestro ordenador y el tipo de uso/intensidad a la que se va a someter. En el aula daremos una explicación detallada de todo esto, y os ayudaré a decidir cuál es la mejor configuración para cada caso en particular.</p>
+			<p>Ten en cuenta que, dependiendo de si estás usando VirtualBox en Windows, Mac o Linux, la interfaz puede tener distintas opciones o una disposición diferente a la que se muestra en las capturas.</p>
+			<img class="center" src="img/preparacion/4.png">
+			<img class="center" src="img/preparacion/5.png">
+			<img class="center" src="img/preparacion/6.png">
+			<img class="center" src="img/preparacion/7.png">
+			<img class="center" src="img/preparacion/8.png">
+			<h3>Paso 3: Arrancar la máquina y puesta a punto</h3>
+			<footer>
+			<hr>
+			<p>
+                Adrià Padila<br>
+                adrian.padilla@uab.cat<br>
+                <b>Universitat Autònoma de Barcelona</b>
+            </p>
+
+			</footer>
+		</div>
+	</body>
+
+
+
+</html>
