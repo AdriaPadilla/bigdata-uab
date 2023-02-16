@@ -90,16 +90,34 @@ for nota in notes:
         if tipus.__name__ == 'str':
             if "." in nota:
                 nota_arreglada = float(nota)
-                notes_arreglades.append(nota)
+                notes_arreglades.append(nota_arreglada)
             elif "," in nota:
-                nota_arreglada = nota.replace(",", ".")
-                notes_arreglades.append(nota)
+                nota_arreglada = float(nota.replace(",", "."))
+                notes_arreglades.append(nota_arreglada)
             else:
                 nota_arreglada = int(nota)
-                notes_arreglades.append(nota)
+                notes_arreglades.append(nota_arreglada)
 
 print(notes_arreglades)
 
 for n, a in zip(notes_arreglades, alumnes):
     print(f"L'alumne/a {a} ha obtingut un {n} de nota final")
+
+# Calcular el promig
+promig = sum(notes_arreglades)/len(notes_arreglades)
+
+# Imprimir el promig fent el redondeig a 1 decimal
+print(f"el promig de l'aula és de {round(promig,1)}")
+
+# Obtenir la nota més alta
+valor_alt = max(notes_arreglades)
+valor_alt_posicio = notes_arreglades.index(max(notes_arreglades))
+print(valor_alt)
+print(alumnes[valor_alt_posicio])
+
+# Obtenir la nota més baixa
+valor_baix = min(notes_arreglades)
+valor_baix_posicio = notes_arreglades.index(min(notes_arreglades))
+print(valor_baix)
+print(alumnes[valor_baix_posicio])
 ```
