@@ -1,3 +1,27 @@
+# Ejercicios Básicos
+
+```python3
+# Se responden los Ejercicios por orden de ejecución
+
+var_1 = "esto es un ejercicio"
+print(var_1)
+nota = 10
+asignatura = "big data"
+text_final = f"en la {asignatura} he obtenido un {nota}"
+print(text_final)
+
+nota_2 = 5
+nou_text = text_final.replace(f"{nota}", f"{nota_2}")
+print(nou_text)
+
+notas = ["5","7","6","4","8","2"]
+alumnos = ["jaume","carla","pere","adrià","rafael","agnès"]
+
+for i,n in zip(notas, alumnos):
+    nota = int(i)+1
+    print(nota, n)
+```
+
 # Ejercicio Obtención de datos
 
 ## Ejercicio A
