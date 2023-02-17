@@ -240,10 +240,21 @@
 <span style="color: #f92672">&gt;&gt;</span> <span style="color: #ae81ff">20</span>
 </pre></div>
 </br>
+<p>Fíjate en el código anterior. No es necesario usar <i>else</i> si el programa no debe realizar ninguna acción cuando la condición <i>if</i> no se cumple. Pero ¿qué ocurre cuando debemos comprobar varias conciones? Para eso tenemos la instrucción <i>elif</i>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">numeros</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">6</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">7</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">8</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">15</span><span style="color: #f8f8f2">]</span>
+
+	<span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">n</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">numeros:</span>
+    <span style="color: #66d9ef">if</span> <span style="color: #f8f8f2">n</span> <span style="color: #f92672">==</span> <span style="color: #ae81ff">3</span><span style="color: #f8f8f2">:</span>
+        <span style="color: #f8f8f2">print(f</span><span style="color: #e6db74">&quot;{n} es igual que 3&quot;</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #66d9ef">elif</span> <span style="color: #f8f8f2">n</span> <span style="color: #f92672">&lt;</span> <span style="color: #ae81ff">3</span><span style="color: #f8f8f2">:</span>
+        <span style="color: #f8f8f2">print(f</span><span style="color: #e6db74">&quot;{n} es menor que tres&quot;</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #66d9ef">else</span><span style="color: #f8f8f2">:</span> <span style="color: #75715e"># Else no lleva condición, porque es &quot;cualquier otra cosa&quot;</span>
+        <span style="color: #f8f8f2">print(f</span><span style="color: #e6db74">&quot;{n} es mayor que tres&quot;</span><span style="color: #f8f8f2">)</span>
+</pre></div>
 
 <h2 id="func">Funciones nativas de python</h2>
 <p>Python tiene muchas funciones nativas. Estas funciones realizan operaciones específicas y tienen como objetivo simplificar procesos. Hay infinidad, y será necesario buscar cómo se implementan cuando sea necesario. En este enlace tienes la documentación y el listado completo de funciones disponibles <a href="https://docs.python.org/3/library/functions.html" target="_blank"><b>Python Built-in Functions</b></a>.</p>
-	<p>En el siguiente ejemplo, se usa la función el operador <i>in</i> para simplificar el chequeo de un valor en una lista, esto evitará tener que crear un <i>for</i> loop para iterar sobre los elementos y comprobarlos uno por uno.</p><br>
+	<p>En el siguiente ejemplo, se usa el operador <i>in</i> para simplificar el chequeo de un valor en una lista, esto evitará tener que crear un <i>for</i> loop para iterar sobre los elementos y comprobarlos uno por uno.</p><br>
 <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">lista</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&quot;adria&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;carla&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;joan&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;pere&quot;</span><span style="color: #f8f8f2">]</span>
 
 <span style="color: #f8f8f2">nom</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;carme&quot;</span>
