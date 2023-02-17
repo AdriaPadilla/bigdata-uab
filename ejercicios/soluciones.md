@@ -73,7 +73,7 @@ print(f"percentatge mes de 2 sessions: {percentatge}%")
 
 ## Ejercicio B
 ```python3
-notes = [5,"3","7",8,"9.5",4,"6,2"]
+notes = ["5","3","7","8","9.5","4","6,2"]
 alumnes = ["adria","agnès","josep","rafa","cristina","Gemma","Eduard"]
 
 # Primer arreglem el tema de les notes
@@ -83,20 +83,15 @@ notes_arreglades = [] # Crearem una nova llista on guardar les notes notes_arreg
 ### https://stackoverflow.com/questions/402504/how-to-determine-a-python-variables-type
 
 for nota in notes:
-    tipus = type(nota)
-    if tipus.__name__ == 'int':
-        notes_arreglades.append(nota)
+    if "." in nota:
+        nota_arreglada = float(nota)
+        notes_arreglades.append(nota_arreglada)
+    elif "," in nota:
+        nota_arreglada = float(nota.replace(",", "."))
+        notes_arreglades.append(nota_arreglada)
     else:
-        if tipus.__name__ == 'str':
-            if "." in nota:
-                nota_arreglada = float(nota)
-                notes_arreglades.append(nota_arreglada)
-            elif "," in nota:
-                nota_arreglada = float(nota.replace(",", "."))
-                notes_arreglades.append(nota_arreglada)
-            else:
-                nota_arreglada = int(nota)
-                notes_arreglades.append(nota_arreglada)
+        nota_arreglada = int(nota)
+        notes_arreglades.append(nota_arreglada)
 
 print(notes_arreglades)
 
