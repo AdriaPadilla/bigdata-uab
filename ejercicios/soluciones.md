@@ -116,3 +116,60 @@ valor_baix_posicio = notes_arreglades.index(min(notes_arreglades))
 print(valor_baix)
 print(alumnes[valor_baix_posicio])
 ```
+### Ejercicio "mi primer Dataframe"
+
+```python
+# Importamos Pandas
+import pandas as pd
+
+# Elementos básicos (datos disponibles)
+notes = [1,6,8,9,10,6,5]
+alumnes = ["Jaume", "Carles", "Cristina", "Josep", "Rafael", "Agnès", "Marta"]
+cognoms = ["Tort","Soldevila","Luna","Muñoz","Fernandez","Hernandez", "Llopart"]
+
+noms_complets = []
+
+for n, c in zip(alumnes, cognoms):
+    nom_complet = f"{n} {c}"
+    noms_complets.append(nom_complet)
+
+print(noms_complets)
+
+tuplas = []
+
+for nom, nota in zip(noms_complets, notes):
+    tupla = (nom, nota)
+    tuplas.append(tupla)
+
+print(tuplas)
+
+notes_arreglades = []
+for t in tuplas:
+    nota = t[1]
+    if nota >= 9:
+        nota_nova = 10
+        qualificacio = "matricula de honor"
+        tupla_nova = (t[0], nota_nova, qualificacio)
+        notes_arreglades.append(tupla_nova)
+    else:
+        nota_nova = nota+1
+        if nota_nova < 5 :
+            qualificacio = "suspendido"
+        elif nota_nova >=5 and nota_nova <=6:
+           qualificacio = "aprobado"
+        elif nota_nova >6 and nota_nova <7:
+            qualificacio = "bien"
+        elif nota_nova >= 7 and nota_nova <9:
+            qualificacio = "notable"
+        else:
+            qualificacio = "Excelente"
+
+        tupla_nova = (t[0], nota_nova, qualificacio)
+        notes_arreglades.append(tupla_nova)
+
+print(notes_arreglades)
+
+df = pd.DataFrame(notes_arreglades, columns=["nom", "nota","qualificacio"])
+mitjana = sum(df["nota"])/len(df)
+df["desviació"] = round(df["nota"]-mitjana,2)
+print(df)

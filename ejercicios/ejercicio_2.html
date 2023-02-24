@@ -12,33 +12,32 @@
             </header>
                     
 		
-        		<h1 id="ejer">Ejercicio 2</h1>
-				
-<div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">import</span> <span style="color: #f8f8f2">pandas</span> <span style="color: #66d9ef">as</span> <span style="color: #f8f8f2">pd</span>
-
-<span style="color: #f8f8f2">assistents</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&quot;carme&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;raúl&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;pau&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;pep&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;carles&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;julia&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;julia&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;julia&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;carme&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;joan&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;pep&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;joan&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;carme&quot;</span><span style="color: #f8f8f2">]</span>
-<span style="color: #f8f8f2">llista_temp</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[]</span>
-
-<span style="color: #f8f8f2">unics</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">set(assistents)</span>
-
-<span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">a</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">unics:</span>
-    <span style="color: #f8f8f2">persona</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">a</span>
-    <span style="color: #f8f8f2">aparicions</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">assistents</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">count(a)</span>
-    <span style="color: #f8f8f2">tupla</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(persona,</span> <span style="color: #f8f8f2">aparicions)</span>
-    <span style="color: #f8f8f2">llista_temp</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">append(tupla)</span>
-
-<span style="color: #f8f8f2">print(llista_temp)</span>
-
-<span style="color: #f8f8f2">df</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">pd</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">DataFrame(list(llista_temp),</span> <span style="color: #f8f8f2">columns</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">[</span><span style="color: #e6db74">&quot;assistents&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;sessions&quot;</span><span style="color: #f8f8f2">])</span>
-
-<span style="color: #f8f8f2">df[</span><span style="color: #e6db74">&quot;promig&quot;</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">sum(df</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">sessions)</span><span style="color: #f92672">/</span><span style="color: #f8f8f2">len(df)</span>
-<span style="color: #f8f8f2">df[</span><span style="color: #e6db74">&quot;desviacio&quot;</span><span style="color: #f8f8f2">]</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">df[</span><span style="color: #e6db74">&quot;sessions&quot;</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">-</span><span style="color: #f8f8f2">df[</span><span style="color: #e6db74">&quot;promig&quot;</span><span style="color: #f8f8f2">]</span>
-
-<span style="color: #f8f8f2">print(df)</span>
+        		<h1 id="ejer">Mi primer "DataFrame"</h1>
+				<h2>Planteamiento del problema</h2>
+                <p>Disponemos de las notas y los datos de los alumnos en tres listas distintas.</p>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">notes</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">6</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">8</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">9</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">6</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">5</span><span style="color: #f8f8f2">]</span>
+<span style="color: #f8f8f2">alumnes</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&quot;Jaume&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;Carles&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;Cristina&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;Josep&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;Rafael&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;Agnès&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;Marta&quot;</span><span style="color: #f8f8f2">]</span>
+<span style="color: #f8f8f2">cognoms</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&quot;Tort&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;Soldevila&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;Luna&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;Muñoz&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;Fernandez&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;Hernandez&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;Llopart&quot;</span><span style="color: #f8f8f2">]</span>
 </pre></div>
 
+        
+            <p>
+                <b>Tarea 1:</b> Unificar los nombres y apellidos de los alumnos en una única cadena de texto<br>
+                <b>Tarea 2:</b> Crear una lista de "tuplas" que contengan los datos del alumno unificados, y la nota obtenida<br>
+                <b>Tarea 3:</b> Sumar un punto a todas la notas, sin que puedan sobrepasar el 10<br>
+                <b>Tarea 4:</b> Añadir un tercer elemento a la tupla siguiendo este criterio:<br><br>
 
+                - Si la nota final es inferior a 5, añadir el texto "suspendido".<br>
+                - Si la nota se encuentra entre 5 y 6 (ambos incluídos), añadir el texto "aprobado".<br>
+                - Si la nota es superior a 6, e inferior a 7, añadir el texto "bien".<br>
+                - Si la nota es igual o superior a 7, añadir el texto "notable".<br>
+                - Si la nota supera el 9, añadir el texto "Excelente".<br>
+                - Si la nota equivale a un 10, añadir el texto "matrícula de honor".<br><br>
+                <b>Tarea 5:</b> Transforma la lista de tuplas en un dataset.<br>
+                <b>Tarea 6:</b> Calcula la desviación total y porcentual de cada alumno sobre la mediana del aula.<br>
+                <b>Tarea 7:</b> Exporta el Dataset resultante en formato CSV.<br>
 
+            </p>
 
 
 
