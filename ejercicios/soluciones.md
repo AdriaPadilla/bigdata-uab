@@ -23,8 +23,8 @@ for i,n in zip(notas, alumnos):
 ```
 
 # Ejercicio Obtención de datos
-
-## Ejercicio A
+## Ejercicios Básicos: Cosas básicas
+### Ejercicio A
 ```python3
 llista = [
     "david",
@@ -71,7 +71,7 @@ print("Han assistit a mes de 2 sessions:", contador)
 print(f"percentatge mes de 2 sessions: {percentatge}%")
 ```
 
-## Ejercicio B
+### Ejercicio B
 ```python3
 notes = ["5","3","7","8","9.5","4","6,2"]
 alumnes = ["adria","agnès","josep","rafa","cristina","Gemma","Eduard"]
@@ -116,7 +116,13 @@ valor_baix_posicio = notes_arreglades.index(min(notes_arreglades))
 print(valor_baix)
 print(alumnes[valor_baix_posicio])
 ```
-### Ejercicio "mi primer Dataframe"
+## Ejercicios de obtención de datos
+### Ejercicio A (Easy mode)
+### Ejercicio B (dificultad media)
+
+
+## Ejercicios con PANDAS
+### Ejercicio 1: Introducción a Pandas
 
 ```python
 # Importamos Pandas
@@ -173,3 +179,59 @@ df = pd.DataFrame(notes_arreglades, columns=["nom", "nota","qualificacio"])
 mitjana = sum(df["nota"])/len(df)
 df["desviació"] = round(df["nota"]-mitjana,2)
 print(df)
+```
+
+### Ejercicio 2: Importación de Dataset y Trabajo con Datos
+
+```python
+# DOCS
+# Filtrat del dataset: https://datagy.io/filter-pandas/
+
+# Immportem la llibreria PANDAS
+import pandas as pd
+
+# Carregar el Dataset
+df = pd.read_csv("dataset_youtube.csv")
+
+# Printem la forma del dataset
+print(df.shape)
+# Printem el nom de les columnes
+print(df.columns)
+
+# Quin tipus de dades hi ha a cada columna?
+# Docs: https://datatofish.com/data-type-pandas-dataframe/
+print(df.dtypes)
+
+# Calcula cuantos vídeos ha publicado cada canal
+# Primer cal tenir cuants canals hi ha
+
+channels = df["channelTitle"]
+unique_channels = set(channels.to_list())
+for unique in unique_channels:
+    print(unique)
+    df2 = df[df["channelTitle"] == unique]
+    n_videos = len(df2)
+    # DOCS COM SUMAR COLUMNA https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sum.html
+    sum_likes = df2["likeCount"].sum()
+    print(f"Promig de likes = {sum_likes/n_videos}")
+
+    # Video més vist
+
+    # Hi ha dues possibilitats
+    # Opcio 1
+    max_value= df2["viewCount"].max() # Busquem el valor més alt a la columna
+    index_max_value = df2.index[df2.viewCount == max_value] # agafem la posició del valor en la columna
+    print(index_max_value)
+    # La linea anterior de codi retorna un "objecte" que conté l'index.
+    index = index_max_value[0] # ens quedem amb el valor de l'objecte
+
+    video_title = df2["videoTitle"][index] # agafem el titol del video per l'index
+    views = df2["viewCount"][index] # agafem el numero d'espectadors del video per l'index
+
+    print(video_title, views) # ho imprimim
+
+    # Opcio 2
+    i = df2["viewCount"].idxmax() # Utilitzem la funció idxmax() per trobar l'index del valor més alt
+    print(df2["videoTitle"][i],df2["viewCount"][i]) # Utilitzem l'index per filtrar el dataset
+
+```

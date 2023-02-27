@@ -17,21 +17,21 @@
 			<p>Pandas es una de las librerías más usadas de Python. Recibe su nombre del acrónimo "Panel Data", y es especialmente útil en el terreno de la ciencia de datos y el machine learning, ya que permite el manejo y manipulación de grandes volúmenes de información estructurada. Además de manipular datos, esta librería posibilita la importación de datos desde múltiples fuentes: bases de datos, archivos json, csv, excel, html, etc. También permite exportar los datos a formatos que sean explotables desde otros programas.</p>
 
 			<h3><b>¿Qué es un <i>Dataframe</i>?</b></h3>
-			<p>Un <i>dataframe</i> es un conjunto de datos estructurados en filas, columnas e índices. Es similar a lo que visualmente tenemos en Excel.</p>
+			<p>Un <i>dataframe</i> es un conjunto de datos estructurados en filas, columnas e índices. Es similar a lo que visualmente tenemos en Excel. Cuando importamos datos usando Pandas, o bien cuando creamos nuevos conjuntos de datos, Pandas estructura esta información usando "DataFrames".</p>
 			<img src="./img/dataframe.png" style="width: 100%;">
 			<br>fuente: https://pynative.com/python-pandas-dataframe/<br>
 
 			<h3>Instalar e Importar la librería</h3>
-			<p>Para poder usar Pandas, es necesario tener la libreria instalada en nuestro sistema. Para ello, abriremos una consola o terminal, y usaremos el comando: 
-				<pre>pip install pandas</pre>
-			</p>
-			<p>Una vez instalada, es necesario "iniciar" la liberaría desde nuestro código. Para ello, al inicio del documento .py, usaremos la siguiente importanción:</p>
+			<p>Para poder usar Pandas, es necesario tener la libreria instalada en nuestro sistema. Para ello, abriremos una consola o terminal, y usaremos el comando: 			</p>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">pip</span> <span style="color: #f8f8f2">install</span> <span style="color: #f8f8f2">pandas</span>
+</pre></div>
+
+			<p>Una vez instalada, deberás "importar" la liberaría desde el código python que estés creando. Para ello, al inicio del documento .py, usaremos la siguiente importanción:</p>
 <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">import</span> <span style="color: #f8f8f2">pandas</span> <span style="color: #66d9ef">as</span> <span style="color: #f8f8f2">pd</span>
 </pre></div>
 
-			<h3>Importar un <i>DataSet</i></h3>
-			<p>Para importar un conjunto de datos desde un archivo .csv o excel, usaremos la función <i>read_csv(argumentos)</i></p>
-			<p>Ejemplo: tenemos un dataset en formato CSV con los siguientes datos:</p>
+			<h3>Importar un <i>DataSet</i>: <i>read_csv() / read_excel()</i></h3>
+			<p>Para importar un conjunto de datos desde un archivo .csv o excel, usaremos la función <i>read_csv(argumentos)</i>. Ejemplo: tenemos un archivo en formato CSV con los siguientes datos:</p>
 <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">nom,punts</span>
 <span style="color: #f8f8f2">joan,</span><span style="color: #ae81ff">2</span>
 <span style="color: #f8f8f2">carles,</span><span style="color: #ae81ff">3</span>
@@ -60,11 +60,20 @@
 <span style="color: #ae81ff">6</span>    <span style="color: #f8f8f2">Laura</span>     <span style="color: #ae81ff">14</span>
 <span style="color: #ae81ff">7</span>     <span style="color: #f8f8f2">Quim</span>      <span style="color: #ae81ff">6</span>
 </pre></div>
+<p>Existen muchos tipos de archivos desde los que importar datos. Además, en algunas ocasiones, los datos no están necesariamente estructurados de la forma "estándar". Por ejemplo, un arxivo CSV puede usar como delimitador de datos los siguientes carácteres: "," o bien ";"... Pero también puede usarse el tabulador u otros. Por lo tanto, será necesario ajustar los argumentos de la importación para cada caso. Para ello, puedes leer la documentación aquí: <a href="https://pandas.pydata.org/pandas-docs/stable/reference/io.html">Pandas Read The Docs</a></a></p>
+
+<h3>Exportar un <i>DataSet</i>: <i>to_csv() / to_excel()</i></h3>
+<p>Para exportar un dataframe a un formato que podamos trabajar con software como Excel o Tableau, es necesario exportar los datos a un formato tipo csv, xlsx, o tab (entre otros). Para ello Pandas tiene dos funciones básicas: <i>to_csv()</i> y <i>to_excel()</i>.</p>
+<p>Read The Docs: <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_csv.html"><i>to_csv(args)</i></a><br>
+Read The Docs: <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_excel.html"><i>to_excel(args)</i></a></p>
+
+<!--
 <h3>Filtrado de datasets (<i>subset</i>)</h3>
+
 <p>Existen 2 métodos para realizar filtrados de datasets. Cada uno de ellos puede ser útil en un momento dado, pero debes tener en cuenta que su uso no solo depende de la utilidad, sino de la viabilidad a nivel de "recursos" de sistema que requieren.</p>
 <h4>Método 1: Filtado con uso de <i>loc</i></h4>
 <p>Este método consiste en establecer un valor a encontrar, ya sea numérico o string, y filtrar el dataset completo para generar un segundo dataset con la información que estamos buscando.</p>
-<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">import</span> <span style="color: #f8f8f2">pandas</span> <span style="color: #66d9ef">as</span> <span style="color: #f8f8f2">pd</span>
+<div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">import</span> <span style="color: #f8f8f2">pandas</span> <span style="color: #66d9ef">as</span> <span style="color: #f8f8f2">pd</span>
 
 <span style="color: #f8f8f2">persona_a_encontrar</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;claudia&quot;</span>
 
@@ -104,6 +113,8 @@
 <span style="color: #ae81ff">4</span>  <span style="color: #f8f8f2">claudia</span>     <span style="color: #ae81ff">18</span>
 <span style="color: #ae81ff">8</span>  <span style="color: #f8f8f2">claudia</span>     <span style="color: #ae81ff">25</span>
 </pre></div>
+
+-->
 
 
 			<footer>
