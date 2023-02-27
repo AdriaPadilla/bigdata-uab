@@ -1,6 +1,6 @@
-# Ejercicios Básicos
-
-```python3
+# Soluciones a los ejercicios
+## Ejercicios Básicos: Cosas básicas
+```python
 # Se responden los Ejercicios por orden de ejecución
 
 var_1 = "esto es un ejercicio"
@@ -9,10 +9,15 @@ nota = 10
 asignatura = "big data"
 text_final = f"en la {asignatura} he obtenido un {nota}"
 print(text_final)
-
+```
+### Ejercicio A
+```python
 nota_2 = 5
 nou_text = text_final.replace(f"{nota}", f"{nota_2}")
 print(nou_text)
+```
+### Ejercicio B
+```python
 
 notas = ["5","7","6","4","8","2"]
 alumnos = ["jaume","carla","pere","adrià","rafael","agnès"]
@@ -22,10 +27,9 @@ for i,n in zip(notas, alumnos):
     print(nota, n)
 ```
 
-# Ejercicio Obtención de datos
-## Ejercicios Básicos: Cosas básicas
-### Ejercicio A
-```python3
+## Ejercicios de obtención de datos
+### Ejercicio A (Easy mode)
+```python
 llista = [
     "david",
     "dani",
@@ -70,17 +74,14 @@ print("Han assistit un total de:", len(unics))
 print("Han assistit a mes de 2 sessions:", contador)
 print(f"percentatge mes de 2 sessions: {percentatge}%")
 ```
-
-### Ejercicio B
-```python3
+### Ejercicio B (dificultad media)
+```python
 notes = ["5","3","7","8","9.5","4","6,2"]
 alumnes = ["adria","agnès","josep","rafa","cristina","Gemma","Eduard"]
 
 # Primer arreglem el tema de les notes
 
 notes_arreglades = [] # Crearem una nova llista on guardar les notes notes_arreglades
-
-### https://stackoverflow.com/questions/402504/how-to-determine-a-python-variables-type
 
 for nota in notes:
     if "." in nota:
@@ -116,11 +117,6 @@ valor_baix_posicio = notes_arreglades.index(min(notes_arreglades))
 print(valor_baix)
 print(alumnes[valor_baix_posicio])
 ```
-## Ejercicios de obtención de datos
-### Ejercicio A (Easy mode)
-### Ejercicio B (dificultad media)
-
-
 ## Ejercicios con PANDAS
 ### Ejercicio 1: Introducción a Pandas
 
