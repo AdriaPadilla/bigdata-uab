@@ -231,3 +231,39 @@ for unique in unique_channels:
     print(df2["videoTitle"][i],df2["viewCount"][i]) # Utilitzem l'index per filtrar el dataset
 
 ```
+### Ejercicio 3: Datos desde JSON
+
+```python
+import json
+import glob
+import pandas as pd
+from tqdm import tqdm
+
+f = open('medidas.json')
+
+data = json.load(f)
+print(len(data))
+
+list_of_df = []
+
+for mostra in tqdm(data):
+    date = mostra["fecha"]
+    temp = float(mostra["temperatura"])
+    pres = float(mostra["presion"])
+
+    df = pd.DataFrame({
+        "data": date,
+        "temperatura": temp,
+        "pres": pres,
+
+    }, index=[0])
+    list_of_df.append(df)
+
+final_df = pd.concat(list_of_df)
+
+print(f"la temperatura mínima ha estat {final_df['temperatura'].min()}")
+print(f"la temperatura màxima ha estat {final_df['temperatura'].max()}")
+
+
+final_df.to_csv("final.csv", decimal=",", sep="\t", index=False)
+```
