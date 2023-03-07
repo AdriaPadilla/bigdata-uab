@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<!-- http://hilite.me/ -->
+	<head>
+		<title>Data Viz. Big Data UAB</title>
+		<link href="./styles/style.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+
+		<div class="container">
+			<header>
+					<p><a href="./index.html">Regresar al Inicio</a>
+			</header>
+			<h1>TWITCH (API)</h1>
+            <h3>Introducción:</h3>
+            <p>Para poder obtener datos de la API de Twitch es necesario, primero, tener una clave de acceso para aplicaciones en esta plataforma. Para obtener una clave debes visitar: <a href="https://dev.twitch.tv/console" target="_blank">https://dev.twitch.tv/console</a>. Necesitarás hacer login o crear una cuenta nueva en caso de que no la tengas.</p>
+            <p>En el apartado "aplicaciones" puedes generar las credenciales para una nueva "aplicación", que es lo que vamos a usar para obtener dato. Ten en cuenta que NUNCA, bajo ningún concepto, debes hacer públicas estas claves.</p>
+
+            <p>Para Facilitar la comunicación entre la API y nuestro código, vamos a usar la librería TwitchAPI. Esta librería es bastante compleja en su última versión, por lo que recurrimos a una versión antigua, la <a href="https://pytwitchapi.readthedocs.io/en/v2.5.7/modules/twitchAPI.twitch.html" target="_blank">V2.5.7.1</a>. Para ello, debes abrir un terminal (en Windows es necesario usar PowerShell), y lanzar el comando siguiente: </p>
+            <pre>pip install twitchAPI==2.5.7.1</pre>
+            <p>Una vez instalada la librería, podemos empezar a trabajar con ella. <a href="https://pytwitchapi.readthedocs.io/en/v2.5.7/modules/twitchAPI.twitch.html" target="_blank">Aquí tenéis toda la documentación</a>.</p>
+            <p><b>Cosas a tener en cuenta</b>:</p>
+            <ol>
+                <li>Las peticiones a la API tienen un límite: <a href="https://dev.twitch.tv/docs/api/migration/#rate-limits" target="_blank">En la documentación se establece</a> cuantas peticiones puedes realizar en una ventana concreta de tiempo.</li>
+                <li>Deberás añadir reguladores en el código para que la ejecución se pause para evitar superar estos límites.</li>
+                <li>Recuerda: NUNCA publiques las claves de tu aplicación.</li>
+            </ol>
+            <h3>Codigo de ejemplo:</h3>
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">from</span> <span style="color: #f8f8f2">twitchAPI.twitch</span> <span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">Twitch</span>
+<span style="color: #f92672">import</span> <span style="color: #f8f8f2">json</span>
+
+    <span style="color: #75715e"># TWITCH API VERSION 2.5.7.1</span>
+    <span style="color: #75715e"># pip install twitchAPI==2.5.7.1</span>
+    <span style="color: #75715e"># DOCS https://pytwitchapi.readthedocs.io/en/v2.5.7/modules/twitchAPI.twitch.html</span>
+    
+    <span style="color: #f8f8f2">CLIENT</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;&quot;</span>
+    <span style="color: #f8f8f2">SECRET</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;&quot;</span>
+    
+    <span style="color: #66d9ef">def</span> <span style="color: #a6e22e">twitch_example</span><span style="color: #f8f8f2">():</span>
+        <span style="color: #f8f8f2">twitch</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Twitch(CLIENT,</span> <span style="color: #f8f8f2">SECRET)</span>
+        <span style="color: #f8f8f2">result</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">twitch</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">get_streams(first</span><span style="color: #f92672">=</span><span style="color: #ae81ff">20</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">language</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;ca&quot;</span><span style="color: #f8f8f2">)</span>
+        <span style="color: #f8f8f2">print(result)</span>
+        
+        <span style="color: #75715e"># GUARDAMOS LA RESPUESTA EN UN DOCUMENTO JSON</span>
+        <span style="color: #66d9ef">with</span> <span style="color: #f8f8f2">open(</span><span style="color: #e6db74">&quot;output_file.json&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;w&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">encoding</span><span style="color: #f92672">=</span><span style="color: #e6db74">&#39;utf-8&#39;</span><span style="color: #f8f8f2">)</span> <span style="color: #66d9ef">as</span> <span style="color: #f8f8f2">f:</span>
+            <span style="color: #f8f8f2">json</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">dump(result,</span> <span style="color: #f8f8f2">f,</span> <span style="color: #f8f8f2">ensure_ascii</span><span style="color: #f92672">=</span><span style="color: #66d9ef">False</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">indent</span><span style="color: #f92672">=</span><span style="color: #ae81ff">4</span><span style="color: #f8f8f2">)</span>
+            
+        <span style="color: #75715e"># IMPRIMIMOS EL NOMBRE DE USUARIO Y LOS VIEWERS</span>
+        <span style="color: #f8f8f2">results</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">result[</span><span style="color: #e6db74">&quot;data&quot;</span><span style="color: #f8f8f2">]</span>
+        <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">r</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">results:</span>
+            <span style="color: #f8f8f2">print(r[</span><span style="color: #e6db74">&quot;user_name&quot;</span><span style="color: #f8f8f2">],</span> <span style="color: #f8f8f2">r[</span><span style="color: #e6db74">&quot;viewer_count&quot;</span><span style="color: #f8f8f2">])</span>
+        
+    <span style="color: #f8f8f2">twitch_example()</span>
+    </pre></div>
+            <h1>Ejercicios con la API</h1>
+            <ol>
+                <li>Crea un código que pueda extraer todos los streamers en directo de Twitch en español que se encuentran ahora mismo en directo.</li>
+                <li>Vuelca el contenido de cada consulta en un documento JSON distinto.</li>
+                <li>Crea un dataframe con pandas con estos datos.</li>
+                <li>Calcula el promedio de espectadores del momento.</li>
+                <li>Exporta el dataset a un archivo .csv</li>
+                <li>Analiza la distribución de espectadores dentro del dataset</li>
+            </ol>
+
+
+			<footer>
+			<hr>
+			<p>
+                Adrià Padila<br>
+                adrian.padilla@uab.cat<br>
+                <b>Universitat Autònoma de Barcelona</b>
+            </p>
+
+			</footer>
+		</div>
+	</body>
+
+
+
+</html>
