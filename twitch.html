@@ -52,7 +52,7 @@
     
 <span style="color: #f8f8f2">twitch_example()</span>
     </pre></div>
-            <h1>Ejercicios con la API</h1>
+            <h2>Ejercicios con la API</h2>
             <ol>
                 <li>Crea un código que pueda extraer todos los streamers en directo de Twitch en español que se encuentran ahora mismo en directo.</li>
                 <li>Vuelca el contenido de cada consulta en un documento JSON distinto.</li>
@@ -61,6 +61,89 @@
                 <li>Exporta el dataset a un archivo .csv</li>
                 <li>Analiza la distribución de espectadores dentro del dataset</li>
             </ol>
+            <h2>Ejemplo completo y comentado realizado en clase</h2>
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">from</span> <span style="color: #f8f8f2">twitchAPI.twitch</span> <span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">Twitch</span>
+<span style="color: #f92672">import</span> <span style="color: #f8f8f2">datetime</span>
+<span style="color: #f92672">import</span> <span style="color: #f8f8f2">pandas</span> <span style="color: #66d9ef">as</span> <span style="color: #f8f8f2">pd</span>
+<span style="color: #f92672">import</span> <span style="color: #f8f8f2">time</span>
+
+<span style="color: #f8f8f2">now</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">datetime</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">datetime</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">now()</span> <span style="color: #75715e"># Agafem l&#39;hora i dia en que iniciem la consulta</span>
+
+<span style="color: #75715e"># Definim les credencials de la API</span>
+<span style="color: #f8f8f2">twitch</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Twitch(</span><span style="color: #e6db74">&#39;app_id&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;clave_secreta&#39;</span><span style="color: #f8f8f2">)</span>
+
+<span style="color: #75715e"># Definim una llista dels idiomes que volem capturar</span>
+<span style="color: #f8f8f2">idiomes</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&quot;es&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;ca&quot;</span><span style="color: #f8f8f2">]</span>
+<span style="color: #f8f8f2">cursor_dummy</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">None</span> <span style="color: #75715e"># Variable DUMMY per al cursor (paginació de resultats). Necessari per a la primera consutla de la API.</span>
+
+<span style="color: #75715e"># En cada bucle d&#39;idioma, els resultats de la API es van guardant en aquesta llista</span>
+<span style="color: #f8f8f2">llista_dataframes</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[]</span>
+
+<span style="color: #75715e"># Funció recursiva principal</span>
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">crida</span><span style="color: #f8f8f2">(cursor,</span> <span style="color: #f8f8f2">lang):</span> <span style="color: #75715e"># Passem dues variables: Cursor i idioma.</span>
+    <span style="color: #f8f8f2">streams</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">twitch</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">get_streams(first</span><span style="color: #f92672">=</span><span style="color: #ae81ff">100</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">language</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">lang,</span> <span style="color: #f8f8f2">after</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">cursor)</span> <span style="color: #75715e"># Funció &quot;get_streams()&quot;</span>
+    <span style="color: #f8f8f2">dades</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">streams[</span><span style="color: #e6db74">&quot;data&quot;</span><span style="color: #f8f8f2">]</span> <span style="color: #75715e"># Obrim el diccionari que obtenim de la API</span>
+
+    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">dada</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">dades:</span> <span style="color: #75715e"># Per cada emissió en directe, agafem les dades que volem, i les posem en una variable.</span>
+        <span style="color: #f8f8f2">captured_at</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">now</span>
+        <span style="color: #f8f8f2">user_id</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">dada[</span><span style="color: #e6db74">&quot;user_id&quot;</span><span style="color: #f8f8f2">]</span>
+        <span style="color: #f8f8f2">user_name</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">dada[</span><span style="color: #e6db74">&quot;user_name&quot;</span><span style="color: #f8f8f2">]</span>
+        <span style="color: #f8f8f2">game_id</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">dada[</span><span style="color: #e6db74">&quot;game_id&quot;</span><span style="color: #f8f8f2">]</span>
+        <span style="color: #f8f8f2">game_name</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">dada[</span><span style="color: #e6db74">&quot;game_name&quot;</span><span style="color: #f8f8f2">]</span>
+        <span style="color: #f8f8f2">title</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">dada[</span><span style="color: #e6db74">&quot;title&quot;</span><span style="color: #f8f8f2">]</span>
+        <span style="color: #f8f8f2">viewer_count</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">dada[</span><span style="color: #e6db74">&quot;viewer_count&quot;</span><span style="color: #f8f8f2">]</span>
+        <span style="color: #f8f8f2">started_at</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">dada[</span><span style="color: #e6db74">&quot;started_at&quot;</span><span style="color: #f8f8f2">]</span>
+        <span style="color: #f8f8f2">is_mature</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">dada[</span><span style="color: #e6db74">&quot;is_mature&quot;</span><span style="color: #f8f8f2">]</span>
+        <span style="color: #f8f8f2">language</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">dada[</span><span style="color: #e6db74">&quot;language&quot;</span><span style="color: #f8f8f2">]</span>
+
+        <span style="color: #75715e"># Les dades de la variable, les volquem en un dataframe.</span>
+        <span style="color: #f8f8f2">df</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">pd</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">DataFrame({</span>
+            <span style="color: #e6db74">&quot;captured_at&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">captured_at,</span>
+            <span style="color: #e6db74">&quot;user_id&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">user_id,</span>
+            <span style="color: #e6db74">&quot;user_name&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">user_name,</span>
+            <span style="color: #e6db74">&quot;game_id&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">game_id,</span>
+            <span style="color: #e6db74">&quot;game_name&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">game_name,</span>
+            <span style="color: #e6db74">&quot;title&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">title,</span>
+            <span style="color: #e6db74">&quot;viewer_count&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">viewer_count,</span>
+            <span style="color: #e6db74">&quot;started_at&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">started_at,</span>
+            <span style="color: #e6db74">&quot;is_mature&quot;</span><span style="color: #f8f8f2">:is_mature,</span>
+            <span style="color: #e6db74">&quot;lang&quot;</span><span style="color: #f8f8f2">:</span> <span style="color: #f8f8f2">language,</span>
+        <span style="color: #f8f8f2">},</span> <span style="color: #f8f8f2">index</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">[</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">])</span>
+        <span style="color: #f8f8f2">llista_dataframes</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">append(df)</span>
+
+    <span style="color: #75715e"># Ara intententem agafar el cursor per a la següent pàgina</span>
+    <span style="color: #66d9ef">try</span><span style="color: #f8f8f2">:</span>
+        <span style="color: #f8f8f2">cursor</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">streams[</span><span style="color: #e6db74">&quot;pagination&quot;</span><span style="color: #f8f8f2">][</span><span style="color: #e6db74">&quot;cursor&quot;</span><span style="color: #f8f8f2">]</span> <span style="color: #75715e"># El cursor està al final del document de resposta de la API.</span>
+
+        <span style="color: #75715e"># Si troba el cursor, imprimirá la següent linea, que ens diu també quin idioma estem treballant, i quants streams portem capturats.</span>
+        <span style="color: #f8f8f2">print(f</span><span style="color: #e6db74">&quot;Fent una nova consulata. Idioma: {lang} - Total de Streams: {len(llista_dataframes)}&quot;</span><span style="color: #f8f8f2">)</span>
+
+        <span style="color: #75715e"># Afegim un temps de pausa enrte consultes per evitar tocar el màxim de la API</span>
+        <span style="color: #f8f8f2">time</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">sleep(</span><span style="color: #ae81ff">0.12</span><span style="color: #f8f8f2">)</span>
+
+        <span style="color: #75715e"># Tornem a cridar la funció &quot;crida&quot; i li passem el nou cursor per a que continui</span>
+        <span style="color: #f8f8f2">crida(cursor,</span> <span style="color: #f8f8f2">lang)</span>
+
+    <span style="color: #75715e"># Afegim una excepció: En cas que no trobi el cursor, significarà que ha arribat a la última pàgina.</span>
+    <span style="color: #66d9ef">except</span> <span style="color: #a6e22e">KeyError</span><span style="color: #f8f8f2">:</span>
+        <span style="color: #f8f8f2">print(</span><span style="color: #e6db74">&quot;Ultima Pagina&quot;</span><span style="color: #f8f8f2">)</span>
+        <span style="color: #f8f8f2">print(f</span><span style="color: #e6db74">&quot;total streams capturats {len(llista_dataframes)}&quot;</span><span style="color: #f8f8f2">)</span>
+
+        <span style="color: #75715e"># Això fa que la funció salti a la següent tasca.</span>
+        <span style="color: #66d9ef">pass</span>
+
+<span style="color: #75715e"># Aqui comença l&#39;execució de l&#39;script. El loop itera sobre la llista d&#39;idiomes.</span>
+<span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">lang</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">idiomes:</span>
+
+    <span style="color: #75715e"># A cada bucle, netegem la llista de dataframes generats per l&#39;anterior idioma.</span>
+    <span style="color: #f8f8f2">llista_dataframes</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">clear()</span>
+    <span style="color: #75715e"># Iniciem l&#39;script d&#39;exrtacció</span>
+    <span style="color: #f8f8f2">crida(cursor_dummy,</span> <span style="color: #f8f8f2">lang)</span>
+
+    <span style="color: #75715e"># Quan hagi acabat de fer l&#39;extracció, guardarà el dataset amb una extensió .csv i utilitzant l&#39;idioma com a part del nom de l&#39;arxiu.</span>
+    <span style="color: #f8f8f2">final_dataframe</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">pd</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">concat(llista_dataframes)</span>
+    <span style="color: #f8f8f2">final_dataframe</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">to_csv(f</span><span style="color: #e6db74">&quot;export_{lang}.csv&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">index</span><span style="color: #f92672">=</span><span style="color: #66d9ef">False</span><span style="color: #f8f8f2">)</span>
+</pre></div>
 
 
 			<footer>
