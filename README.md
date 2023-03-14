@@ -9,3 +9,6 @@
 Este repositorio reúne las lecciones de la asignatura Análisis y Visualización de BigData, del grado de Comunicación Interactiva de la UAB. El objetivo es servir de guía a los alumnos, pero en ningún caso subtituir las clases presenciales, donde profundiza mucho más en el contenido de cada apartado. 
 
 WEB: [Análisis y visualización de BigData](https://adriapadilla.github.io/bigdata-uab/)
+
+LINK DATASET Twitch feb2023
+https://www.dropbox.com/s/o0mrfqbzjm7b5r7/feb-full-2023.csv?dl=0
