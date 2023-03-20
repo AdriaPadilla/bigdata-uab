@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<!-- http://hilite.me/ -->
+	<head>
+		<title>Data Viz. Big Data UAB</title>
+		<link href="./styles/style.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+
+		<div class="container">
+			<header>
+					<p><a href="./index.html">Regresar al Inicio</a>
+			</header>
+
+
+			<h1>API SPOTIFY</h1>
+            <h2>Recursos básicos</h2>
+            <p>
+                - Documentación API Spotify: <a href="https://developer.spotify.com/documentation/web-api/" target="_blank">Read The Docs</a><br>
+                - Libreria Python Spotipy: <a href="https://spotipy.readthedocs.io/en/2.22.1/#" target="_blank">Spotipy Read The Docs</a>
+            </p>
+            <h2>Primeros pasos</h2>
+            <p>El primer paso es acceder a la página oficial de la API de spotify (ver enlace arriba), crear una cuenta o hacer login. Luego, debes ir al apartado "Dashboard" y crear "crear una nueva aplicación". Introduce un título
+                y una descripción. Luego copia el ID de cliente, y también el token secreto (recuerda que nunca debes hacer público este token). Con estos datos, ya puedes abrir un nuevo proyecto de PyCharm, 
+                y crear un documento llamado "main.py".</p>
+            <p>
+            <h2>Objetivos del ejercicio</h2>
+            <ol>
+                <li>Objetivo Nº 1: recopilar todos los datos posibles de las canciones que hay en una "playlist" de Spotify.</li>
+                <li>Objetivo Nº 2: Obtener un listado de artistas relacionados a partir de la lista de artistas que componen la playlist principal.</li>
+                <li>Objetivo Nº 3: Crear un grafo para visualizar la red de artistas relacionados.</li>
+            </ol>
+            <h2>Código básico (Autorización API)</h2>
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">import</span> <span style="color: #f8f8f2">spotipy</span>
+<span style="color: #f92672">from</span> <span style="color: #f8f8f2">spotipy.oauth2</span> <span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">SpotifyClientCredentials</span>
+
+<span style="color: #f8f8f2">SPOTIPY_CLIENT_ID</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;credencial-cliente&quot;</span>
+<span style="color: #f8f8f2">SPOTIPY_CLIENT_SECRET</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;clave-secreta-cliente&quot;</span>
+
+<span style="color: #f8f8f2">auth_manager</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">SpotifyClientCredentials(SPOTIPY_CLIENT_ID,</span> <span style="color: #f8f8f2">SPOTIPY_CLIENT_SECRET)</span>
+<span style="color: #f8f8f2">sp</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">spotipy</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Spotify(auth_manager</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">auth_manager)</span>
+</pre></div>
+            <h2>Desarrollo del código</h2>
+            (En clase)
+			<footer>
+                <hr>	
+                <p>Adrià Padila</p>
+                </footer>
+            </div>
+        </body>
+    
+    
+    
+    </html>
