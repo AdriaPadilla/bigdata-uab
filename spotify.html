@@ -40,8 +40,71 @@
 <span style="color: #f8f8f2">auth_manager</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">SpotifyClientCredentials(SPOTIPY_CLIENT_ID,</span> <span style="color: #f8f8f2">SPOTIPY_CLIENT_SECRET)</span>
 <span style="color: #f8f8f2">sp</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">spotipy</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Spotify(auth_manager</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">auth_manager)</span>
 </pre></div>
-            <h2>Desarrollo del código</h2>
-            (En clase)
+            <h2>Desarrollo del código (Ejemplo realizado en el aula)</h2>
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #75715e"># Importem les llibreries de la llibreria SPOTIPY</span>
+<span style="color: #f92672">import</span> <span style="color: #f8f8f2">spotipy</span>
+<span style="color: #f92672">from</span> <span style="color: #f8f8f2">spotipy.oauth2</span> <span style="color: #66d9ef">import</span> <span style="color: #f8f8f2">SpotifyClientCredentials</span>
+
+<span style="color: #75715e"># Altres llibreries necessàries</span>
+<span style="color: #f92672">import</span> <span style="color: #f8f8f2">json</span> <span style="color: #75715e"># Per guardar respostes en .json</span>
+<span style="color: #f92672">import</span> <span style="color: #f8f8f2">time</span> <span style="color: #75715e"># Per afegir pauses</span>
+<span style="color: #f92672">import</span> <span style="color: #f8f8f2">pandas</span> <span style="color: #66d9ef">as</span> <span style="color: #f8f8f2">pd</span> <span style="color: #75715e"># per a l&#39;exportació del dataset</span>
+
+<span style="color: #75715e"># Crear les credencials a la consola de desenvolupadors de Spotify</span>
+<span style="color: #f8f8f2">SPOTIPY_CLIENT_ID</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;&#39;</span>
+<span style="color: #f8f8f2">SPOTIPY_CLIENT_SECRET</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&#39;&#39;</span>
+
+<span style="color: #75715e"># Generem la autenticació</span>
+<span style="color: #f8f8f2">auth_manager</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">SpotifyClientCredentials(SPOTIPY_CLIENT_ID,SPOTIPY_CLIENT_SECRET)</span>
+<span style="color: #f8f8f2">sp</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">spotipy</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Spotify(auth_manager</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">auth_manager)</span>
+
+
+<span style="color: #75715e"># Treurem la informació d&#39;aquesta playlist</span>
+<span style="color: #f8f8f2">playlist</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;3oopyXIZGLFtHjFYN9KbuI&quot;</span>
+
+
+<span style="color: #75715e"># https://spotipy.readthedocs.io/en/2.22.1/#spotipy.client.Spotify.playlist_items</span>
+<span style="color: #f8f8f2">query</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">sp</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">playlist_items(playlist,</span> <span style="color: #f8f8f2">fields</span><span style="color: #f92672">=</span><span style="color: #66d9ef">None</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">limit</span><span style="color: #f92672">=</span><span style="color: #ae81ff">100</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">offset</span><span style="color: #f92672">=</span><span style="color: #ae81ff">0</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">market</span><span style="color: #f92672">=</span><span style="color: #66d9ef">None</span><span style="color: #f8f8f2">)</span>
+
+<span style="color: #f8f8f2">relacions</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[]</span>
+
+<span style="color: #75715e"># Obrim la resposta de la API</span>
+<span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">i</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">query[</span><span style="color: #e6db74">&quot;items&quot;</span><span style="color: #f8f8f2">]:</span>
+    <span style="color: #f8f8f2">artists</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">i[</span><span style="color: #e6db74">&quot;track&quot;</span><span style="color: #f8f8f2">][</span><span style="color: #e6db74">&quot;artists&quot;</span><span style="color: #f8f8f2">]</span>
+    <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">artist</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">artists:</span>
+        <span style="color: #75715e"># Agafem el nom de l&#39;artista i la seva ID</span>
+        <span style="color: #f8f8f2">source_artist_name</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">artist[</span><span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">]</span>
+        <span style="color: #f8f8f2">source_artist_id</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">artist[</span><span style="color: #e6db74">&quot;id&quot;</span><span style="color: #f8f8f2">]</span>
+
+        <span style="color: #f8f8f2">treball</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(query[</span><span style="color: #e6db74">&quot;items&quot;</span><span style="color: #f8f8f2">]</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">index(i)</span><span style="color: #f92672">+</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">source_artist_name)</span>
+        <span style="color: #f8f8f2">print(treball)</span>
+        
+        <span style="color: #75715e"># Per si falla la API, afegim un try/except</span>
+        <span style="color: #66d9ef">try</span><span style="color: #f8f8f2">:</span>
+            <span style="color: #75715e"># Per cada artista a la playlist, demanem a la API una llista d&#39;altres artistes relacionats</span>
+            <span style="color: #f8f8f2">related_artists</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">sp</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">artist_related_artists(source_artist_id)</span>
+            <span style="color: #f8f8f2">relacionats</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">related_artists[</span><span style="color: #e6db74">&quot;artists&quot;</span><span style="color: #f8f8f2">]</span>
+            <span style="color: #66d9ef">for</span> <span style="color: #f8f8f2">l</span> <span style="color: #f92672">in</span> <span style="color: #f8f8f2">relacionats:</span>
+                <span style="color: #f8f8f2">related_artist_name</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">l[</span><span style="color: #e6db74">&quot;name&quot;</span><span style="color: #f8f8f2">]</span>
+                <span style="color: #75715e"># Generem una tupla, i la guardem a la llista (linea 26)</span>
+                <span style="color: #f8f8f2">tupla</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">(source_artist_name,</span> <span style="color: #f8f8f2">related_artist_name)</span>
+                <span style="color: #f8f8f2">relacions</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">append(tupla)</span>
+            <span style="color: #f8f8f2">time</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">sleep(</span><span style="color: #ae81ff">3</span><span style="color: #f8f8f2">)</span>
+        <span style="color: #66d9ef">except</span> <span style="color: #a6e22e">TypeError</span><span style="color: #f8f8f2">:</span>
+            <span style="color: #f8f8f2">print(f</span><span style="color: #e6db74">&quot;ERROR! {treball}&quot;</span><span style="color: #f8f8f2">)</span>
+            <span style="color: #66d9ef">pass</span>
+
+<span style="color: #75715e"># Exportem la llista de tuplas a una dataframe i desprès a .csv</span>
+<span style="color: #f8f8f2">df</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">pd</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">DataFrame</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">from_records(relacions,</span> <span style="color: #f8f8f2">columns</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">[</span><span style="color: #e6db74">&#39;source&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;target&#39;</span><span style="color: #f8f8f2">])</span>
+<span style="color: #f8f8f2">df</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">to_csv(</span><span style="color: #e6db74">&quot;dataset_v2.csv&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">index</span><span style="color: #f92672">=</span><span style="color: #66d9ef">False</span><span style="color: #f8f8f2">)</span>
+</pre></div>
+<h2>Resultado 1: Red de artistas más recomendados en Rocksteady/Ska</h2>
+<p>Playlist de partida: <a href="https://open.spotify.com/playlist/3oopyXIZGLFtHjFYN9KbuI" target="_blank">https://open.spotify.com/playlist/3oopyXIZGLFtHjFYN9KbuI</a></p>
+<img src="./img/spotify_graph.png">
+<h2>Resultado 2 Grafo de los artistas más recomendados partiendo de la lista "Éxitos España" de Spotify del 21/03/2023</h2>
+<p>Playlist de partida: <a href="https://open.spotify.com/playlist/37i9dQZF1DXaxEKcoCdWHD" target="_blank">https://open.spotify.com/playlist/37i9dQZF1DXaxEKcoCdWHD</a></p>
+<img src="./img/spotify_graph_2.png">
+
 			<footer>
                 <hr>	
                 <p>Adrià Padila</p>
