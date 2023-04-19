@@ -10,8 +10,10 @@ Este repositorio reúne las lecciones de la asignatura Análisis y Visualizació
 
 WEB: [Análisis y visualización de BigData](https://adriapadilla.github.io/bigdata-uab/)
 
-LINK DATASET Twitch feb2023
+
+## Datasets de treball
+DATASET Twitch febrer 2023
 https://www.dropbox.com/s/o0mrfqbzjm7b5r7/feb-full-2023.csv?dl=0
 
-LINK DATASET 18/4/23
+LINK DATASET Sessió 18/4/23
 https://www.dropbox.com/s/3gwybacvvek0118/final-dataset.csv?dl=0
