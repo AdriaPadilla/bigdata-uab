@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<!-- http://hilite.me/ -->
+	<head>
+		<title>Data Viz. Big Data UAB</title>
+		<link href="./styles/style.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+
+		<div class="container">
+			<header>
+					<p><a href="./index.html">Regresar al Inicio</a>
+			</header>
+            <h1>Análisis de mensajes odio en RRSS: Modelos NLP (Natural Language Processing)  con HuggingFace</h1>
+            <h2>Materiales de trabajo</h2>
+            <a href="https://huggingface.co/models" target="_blank">Modelos y documentación de HuggingFace</a><br>
+            <a href="https://github.com/AdriaPadilla/bigdata-uab/tree/main/datasets/dataset-inmigrantes-barcelona.csv" download="dataset-inmigrantes-barcelona.csv">Dataset "inmigrantes barcelona"</a>
+            <h2>Análisis con modelos individuales</h2>
+<!-- HTML generated using hilite.me --><div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #999999; font-style: italic">##### DEPENDENCIAS</span>
+<span style="color: #999999; font-style: italic"># pip install tqdm</span>
+<span style="color: #999999; font-style: italic"># pip install pandas</span>
+<span style="color: #999999; font-style: italic"># pip install transformers</span>
+<span style="color: #999999; font-style: italic"># pip install torch</span>
+<span style="color: #999999; font-style: italic">#####</span>
+
+<span style="color: #999999; font-style: italic">##### EJEMPLOS DE MODELOS</span>
+<span style="color: #999999; font-style: italic"># https://huggingface.co/MMG/xlm-roberta-base-sa-spanish</span>
+<span style="color: #999999; font-style: italic"># https://huggingface.co/jorgeortizfuentes/spanish_hate_speech</span>
+<span style="color: #999999; font-style: italic"># https://huggingface.co/francisco-perez-sorrosal/distilbert-base-uncased-finetuned-with-spanish-tweets-clf</span>
+<span style="color: #999999; font-style: italic">#####</span>
+
+<span style="color: #6ab825; font-weight: bold">from</span> <span style="color: #447fcf; text-decoration: underline">tqdm</span> <span style="color: #6ab825; font-weight: bold">import</span> <span style="color: #d0d0d0">tqdm</span>
+<span style="color: #6ab825; font-weight: bold">import</span> <span style="color: #447fcf; text-decoration: underline">pandas</span> <span style="color: #6ab825; font-weight: bold">as</span> <span style="color: #447fcf; text-decoration: underline">pd</span>
+<span style="color: #6ab825; font-weight: bold">from</span> <span style="color: #447fcf; text-decoration: underline">transformers</span> <span style="color: #6ab825; font-weight: bold">import</span> <span style="color: #d0d0d0">AutoTokenizer,</span> <span style="color: #d0d0d0">AutoModelForSequenceClassification,</span> <span style="color: #d0d0d0">pipeline</span>
+
+<span style="color: #d0d0d0">df</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">pd.read_csv(</span><span style="color: #ed9d13">&quot;dataset-inmigracion.csv&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">nrows=</span><span style="color: #3677a9">100</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">usecols=[</span><span style="color: #ed9d13">&quot;tweet_id&quot;</span><span style="color: #d0d0d0">,</span><span style="color: #ed9d13">&quot;text&quot;</span><span style="color: #d0d0d0">])</span>
+<span style="color: #24909d">print</span><span style="color: #d0d0d0">(df)</span>
+
+<span style="color: #999999; font-style: italic"># Carregar Model</span>
+<span style="color: #d0d0d0">tokenizer</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">AutoTokenizer.from_pretrained(</span><span style="color: #ed9d13">&quot;jorgeortizfuentes/spanish_hate_speech&quot;</span><span style="color: #d0d0d0">)</span>
+<span style="color: #d0d0d0">model</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">AutoModelForSequenceClassification.from_pretrained(</span><span style="color: #ed9d13">&quot;jorgeortizfuentes/spanish_hate_speech&quot;</span><span style="color: #d0d0d0">)</span>
+
+<span style="color: #999999; font-style: italic"># Generar el Pipeline</span>
+<span style="color: #d0d0d0">pipe</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">pipeline(</span><span style="color: #ed9d13">&quot;text-classification&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">model=model,</span> <span style="color: #d0d0d0">tokenizer=tokenizer)</span>
+
+<span style="color: #d0d0d0">tweets</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">df[</span><span style="color: #ed9d13">&quot;text&quot;</span><span style="color: #d0d0d0">].to_list()</span>
+<span style="color: #d0d0d0">tweet_id</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">df[</span><span style="color: #ed9d13">&quot;tweet_id&quot;</span><span style="color: #d0d0d0">].to_list()</span>
+
+<span style="color: #d0d0d0">tup_list</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">[]</span>
+
+<span style="color: #6ab825; font-weight: bold">for</span> <span style="color: #d0d0d0">tweet,</span> <span style="color: #d0d0d0">tid</span> <span style="color: #6ab825; font-weight: bold">in</span> <span style="color: #24909d">zip</span><span style="color: #d0d0d0">(tweets,</span> <span style="color: #d0d0d0">tweet_id):</span>
+    <span style="color: #d0d0d0">result</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">pipe(tweet)</span>
+    <span style="color: #24909d">print</span><span style="color: #d0d0d0">(result)</span>
+    <span style="color: #d0d0d0">content</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">result[</span><span style="color: #3677a9">0</span><span style="color: #d0d0d0">]</span>
+    <span style="color: #d0d0d0">label</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">content[</span><span style="color: #ed9d13">&quot;label&quot;</span><span style="color: #d0d0d0">]</span>
+    <span style="color: #d0d0d0">score</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">content[</span><span style="color: #ed9d13">&quot;score&quot;</span><span style="color: #d0d0d0">]</span>
+    <span style="color: #d0d0d0">tupla</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">(</span><span style="color: #24909d">str</span><span style="color: #d0d0d0">(tid),</span> <span style="color: #d0d0d0">tweet,</span> <span style="color: #d0d0d0">label,</span> <span style="color: #d0d0d0">score)</span>
+    <span style="color: #d0d0d0">tup_list.append(tupla)</span>
+
+
+<span style="color: #d0d0d0">data</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">pd.DataFrame.from_records(tup_list,</span> <span style="color: #d0d0d0">columns=[</span><span style="color: #ed9d13">&quot;id&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&quot;text&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&quot;label&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&quot;score&quot;</span><span style="color: #d0d0d0">])</span>
+<span style="color: #d0d0d0">data.to_csv(</span><span style="color: #ed9d13">&quot;analysis.csv&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">index=</span><span style="color: #6ab825; font-weight: bold">False</span><span style="color: #d0d0d0">)</span>
+</pre></div>
+
+<h2>Análisis comparativo entre modelos</h2>
+
+<!-- HTML generated using hilite.me --><div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #999999; font-style: italic"># DEPENDENCIAS</span>
+<span style="color: #999999; font-style: italic"># pip install tqdm</span>
+<span style="color: #999999; font-style: italic"># pip install pandas</span>
+<span style="color: #999999; font-style: italic"># pip install transformers</span>
+<span style="color: #999999; font-style: italic"># pip install torch</span>
+<span style="color: #999999; font-style: italic">#####</span>
+
+<span style="color: #999999; font-style: italic"># EJEMPLOS DE MODELOS</span>
+<span style="color: #999999; font-style: italic"># https://huggingface.co/MMG/xlm-roberta-base-sa-spanish</span>
+<span style="color: #999999; font-style: italic"># https://huggingface.co/jorgeortizfuentes/spanish_hate_speech</span>
+<span style="color: #999999; font-style: italic"># https://huggingface.co/francisco-perez-sorrosal/distilbert-base-uncased-finetuned-with-spanish-tweets-clf</span>
+<span style="color: #999999; font-style: italic">#####</span>
+
+
+<span style="color: #6ab825; font-weight: bold">import</span> <span style="color: #447fcf; text-decoration: underline">glob</span>
+<span style="color: #6ab825; font-weight: bold">from</span> <span style="color: #447fcf; text-decoration: underline">tqdm</span> <span style="color: #6ab825; font-weight: bold">import</span> <span style="color: #d0d0d0">tqdm</span>
+<span style="color: #6ab825; font-weight: bold">import</span> <span style="color: #447fcf; text-decoration: underline">pandas</span> <span style="color: #6ab825; font-weight: bold">as</span> <span style="color: #447fcf; text-decoration: underline">pd</span>
+<span style="color: #6ab825; font-weight: bold">from</span> <span style="color: #447fcf; text-decoration: underline">transformers</span> <span style="color: #6ab825; font-weight: bold">import</span> <span style="color: #d0d0d0">AutoTokenizer,</span> <span style="color: #d0d0d0">AutoModelForSequenceClassification,</span> <span style="color: #d0d0d0">pipeline</span>
+
+
+<span style="color: #d0d0d0">models</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">[</span><span style="color: #ed9d13">&quot;MMG/xlm-roberta-base-sa-spanish&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&quot;jorgeortizfuentes/spanish_hate_speech&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&quot;francisco-perez-sorrosal/distilbert-base-uncased-finetuned-with-spanish-tweets-clf&quot;</span><span style="color: #d0d0d0">]</span>
+
+<span style="color: #d0d0d0">dataset</span> <span style="color: #d0d0d0">=</span> <span style="color: #ed9d13">&quot;dataset-inmigrantes-barcelona.csv&quot;</span>
+
+<span style="color: #6ab825; font-weight: bold">def</span> <span style="color: #447fcf">proc</span><span style="color: #d0d0d0">(dataset):</span>
+    <span style="color: #6ab825; font-weight: bold">for</span> <span style="color: #d0d0d0">model</span> <span style="color: #6ab825; font-weight: bold">in</span> <span style="color: #d0d0d0">models:</span>
+        <span style="color: #d0d0d0">model_name</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">model.split(</span><span style="color: #ed9d13">&quot;/&quot;</span><span style="color: #d0d0d0">)[</span><span style="color: #3677a9">1</span><span style="color: #d0d0d0">]</span>
+        <span style="color: #24909d">print</span><span style="color: #d0d0d0">(model_name)</span>
+        <span style="color: #d0d0d0">dataset_new_name</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">f</span><span style="color: #ed9d13">&quot;procesado-{model_name}.csv&quot;</span>
+        <span style="color: #d0d0d0">tup_list</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">[]</span>
+        <span style="color: #d0d0d0">df</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">pd.read_csv(dataset,</span> <span style="color: #d0d0d0">nrows=</span><span style="color: #3677a9">100</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">usecols=[</span><span style="color: #ed9d13">&quot;tweet_id&quot;</span><span style="color: #d0d0d0">,</span><span style="color: #ed9d13">&quot;text&quot;</span><span style="color: #d0d0d0">])</span>
+        <span style="color: #d0d0d0">tweets</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">df[</span><span style="color: #ed9d13">&quot;text&quot;</span><span style="color: #d0d0d0">].to_list()</span>
+        <span style="color: #d0d0d0">tweet_id</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">df[</span><span style="color: #ed9d13">&quot;tweet_id&quot;</span><span style="color: #d0d0d0">].to_list()</span>
+
+        <span style="color: #d0d0d0">t</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">AutoTokenizer.from_pretrained(model)</span>
+        <span style="color: #d0d0d0">m</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">AutoModelForSequenceClassification.from_pretrained(model)</span>
+
+        <span style="color: #6ab825; font-weight: bold">for</span> <span style="color: #d0d0d0">tweet,</span> <span style="color: #d0d0d0">tid</span> <span style="color: #6ab825; font-weight: bold">in</span> <span style="color: #d0d0d0">tqdm(</span><span style="color: #24909d">zip</span><span style="color: #d0d0d0">(tweets,</span> <span style="color: #d0d0d0">tweet_id)):</span>
+            <span style="color: #d0d0d0">pipe</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">pipeline(</span><span style="color: #ed9d13">&quot;text-classification&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">model=m,</span> <span style="color: #d0d0d0">tokenizer=t)</span>
+            <span style="color: #d0d0d0">result</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">pipe(tweet)</span>
+            <span style="color: #d0d0d0">content</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">result[</span><span style="color: #3677a9">0</span><span style="color: #d0d0d0">]</span>
+            <span style="color: #d0d0d0">label</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">content[</span><span style="color: #ed9d13">&quot;label&quot;</span><span style="color: #d0d0d0">]</span>
+            <span style="color: #d0d0d0">score</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">content[</span><span style="color: #ed9d13">&quot;score&quot;</span><span style="color: #d0d0d0">]</span>
+            <span style="color: #d0d0d0">tupla</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">(</span><span style="color: #24909d">str</span><span style="color: #d0d0d0">(tid),</span> <span style="color: #d0d0d0">tweet,</span> <span style="color: #d0d0d0">label,</span> <span style="color: #d0d0d0">score)</span>
+            <span style="color: #d0d0d0">tup_list.append(tupla)</span>
+
+        <span style="color: #d0d0d0">data</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">pd.DataFrame.from_records(tup_list,</span> <span style="color: #d0d0d0">columns=[f</span><span style="color: #ed9d13">&quot;tweet_id&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&quot;text&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">f</span><span style="color: #ed9d13">&quot;label-{model}&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">f</span><span style="color: #ed9d13">&quot;score-{model}&quot;</span><span style="color: #d0d0d0">])</span>
+
+        <span style="color: #d0d0d0">data.to_csv(dataset_new_name,</span> <span style="color: #d0d0d0">index=</span><span style="color: #6ab825; font-weight: bold">False</span><span style="color: #d0d0d0">)</span>
+
+<span style="color: #d0d0d0">proc(dataset)</span>
+
+<span style="color: #999999; font-style: italic"># Aqui hacemos un merge de todos los datasets para tener un archivo final con todo</span>
+
+<span style="color: #d0d0d0">lists_of_sets</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">[]</span>
+<span style="color: #d0d0d0">datasets</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">glob.glob(</span><span style="color: #ed9d13">&quot;procesado-*.csv&quot;</span><span style="color: #d0d0d0">)</span>
+
+<span style="color: #d0d0d0">dataset_madre</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">pd.read_csv(datasets[</span><span style="color: #3677a9">0</span><span style="color: #d0d0d0">])</span>
+
+<span style="color: #6ab825; font-weight: bold">for</span> <span style="color: #d0d0d0">d</span> <span style="color: #6ab825; font-weight: bold">in</span> <span style="color: #d0d0d0">datasets[</span><span style="color: #3677a9">1</span><span style="color: #d0d0d0">:]:</span>
+    <span style="color: #d0d0d0">df</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">pd.read_csv(d)</span>
+    <span style="color: #d0d0d0">dataset_madre</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">dataset_madre.merge(df,</span> <span style="color: #d0d0d0">on=[</span><span style="color: #ed9d13">&quot;tweet_id&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&quot;text&quot;</span><span style="color: #d0d0d0">])</span>
+    <span style="color: #24909d">print</span><span style="color: #d0d0d0">(dataset_madre)</span>
+
+<span style="color: #d0d0d0">dataset_madre.to_csv(f</span><span style="color: #ed9d13">&quot;final-{dataset}&quot;</span><span style="color: #d0d0d0">)</span>
+</pre></div>
+
+    
+
+			<footer>
+			<hr>
+			<p>
+                Adrià Padila<br>
+                adrian.padilla@uab.cat<br>
+                <b>Universitat Autònoma de Barcelona</b>
+            </p>
+
+			</footer>
+		</div>
+	</body>
+
+
+
+</html>
