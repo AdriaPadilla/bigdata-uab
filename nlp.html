@@ -15,6 +15,24 @@
             <h2>Materiales de trabajo</h2>
             <a href="https://huggingface.co/models" target="_blank">Modelos y documentación de HuggingFace</a><br>
             <a href="https://github.com/AdriaPadilla/bigdata-uab/tree/main/datasets/dataset-inmigrantes-barcelona.csv" download="dataset-inmigrantes-barcelona.csv">Dataset "inmigrantes barcelona"</a>
+          <h2>Ejemplo básico</h2>
+          <p>Rercursos: <a href="https://huggingface.co/">Documentación HugginFace.co</a></p>
+<!-- HTML generated using hilite.me --><div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #999999; font-style: italic"># pip install transformers</span>
+<span style="color: #999999; font-style: italic"># pip install torch</span>
+<span style="color: #999999; font-style: italic"># Raw Data --&gt; TOKENIZERS --&gt; Models --&gt; Outputs</span>
+
+<span style="color: #6ab825; font-weight: bold">from</span> <span style="color: #447fcf; text-decoration: underline">transformers</span> <span style="color: #6ab825; font-weight: bold">import</span> <span style="color: #d0d0d0">pipeline</span>
+
+<span style="color: #d0d0d0">pipe</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">pipeline(</span><span style="color: #ed9d13">&quot;text-classification&quot;</span><span style="color: #d0d0d0">)</span>
+<span style="color: #d0d0d0">result</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">pipe(</span><span style="color: #ed9d13">&quot;Maria wants to kill Johan&quot;</span><span style="color: #d0d0d0">)</span>
+<span style="color: #24909d">print</span><span style="color: #d0d0d0">(result)</span>
+
+<span style="color: #999999; font-style: italic"># pip install sentencepiece</span>
+<span style="color: #d0d0d0">pipe</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">pipeline(</span><span style="color: #ed9d13">&quot;translation&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">model=</span><span style="color: #ed9d13">&quot;Helsinki-NLP/opus-mt-en-es&quot;</span><span style="color: #d0d0d0">)</span>
+<span style="color: #d0d0d0">result</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">pipe(</span><span style="color: #ed9d13">&quot;Maria wants to kill Johan&quot;</span><span style="color: #d0d0d0">)</span>
+<span style="color: #24909d">print</span><span style="color: #d0d0d0">(result)</span>
+</pre></div>
+    
             <h2>Análisis con modelos individuales</h2>
 <!-- HTML generated using hilite.me --><div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #999999; font-style: italic">##### DEPENDENCIAS</span>
 <span style="color: #999999; font-style: italic"># pip install tqdm</span>
