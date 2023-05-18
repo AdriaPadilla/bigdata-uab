@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<!-- http://hilite.me/ -->
+	<head>
+		<title>Data Viz. Big Data UAB</title>
+		<link href="./styles/style.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+
+		<div class="container">
+			<header>
+					<p><a href="./index.html">Regresar al Inicio</a>
+			</header>
+            <h1>Scrapping con BeautifulSoup4 + Spotify API</h1>
+            <h2>Ejemplo de extracción de datos sobre Eurovision (wikipedia)</h2>
+            <p>Este es el codigo completo del ejemplo realizado en clase, donde primero se obtienen datos de Wikipedia para saber qué canciones llegaron a la final de Eurovisión,
+                luego estos datos se usan para buscar en la API de Spotify (<i>sp.search(q="artista, cancion")</i>), y finalmente para cada canción se obtienen los datos asociados (<i>sp.audio_features(track_id)</i>).
+            </p>
+            <!-- HTML generated using hilite.me --><div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">
+
+<span style="color: #999999; font-style: italic">### Llibreries a instal·lar #################</span>
+<span style="color: #999999; font-style: italic"># pip install pip install beautifulsoup4    #</span>
+<span style="color: #999999; font-style: italic"># pip install requests                      #</span>
+<span style="color: #999999; font-style: italic"># pip install spotipy                       #</span>
+<span style="color: #999999; font-style: italic"># pip install lxml                          #</span>
+<span style="color: #999999; font-style: italic"># pip install openpyxl                      #</span>
+<span style="color: #999999; font-style: italic">#############################################</span>
+
+<span style="color: #999999; font-style: italic">### DOCUMENTACIO</span>
+<span style="color: #999999; font-style: italic"># Spotipy Docs: https://spotipy.readthedocs.io/en/2.22.1/</span>
+<span style="color: #999999; font-style: italic">###</span>
+
+
+<span style="color: #6ab825; font-weight: bold">import</span> <span style="color: #447fcf; text-decoration: underline">requests</span>
+<span style="color: #6ab825; font-weight: bold">from</span> <span style="color: #447fcf; text-decoration: underline">bs4</span> <span style="color: #6ab825; font-weight: bold">import</span> <span style="color: #d0d0d0">BeautifulSoup</span>
+<span style="color: #6ab825; font-weight: bold">import</span> <span style="color: #447fcf; text-decoration: underline">pandas</span> <span style="color: #6ab825; font-weight: bold">as</span> <span style="color: #447fcf; text-decoration: underline">pd</span>
+<span style="color: #6ab825; font-weight: bold">import</span> <span style="color: #447fcf; text-decoration: underline">time</span>
+<span style="color: #6ab825; font-weight: bold">import</span> <span style="color: #447fcf; text-decoration: underline">spotipy</span>
+<span style="color: #6ab825; font-weight: bold">import</span> <span style="color: #447fcf; text-decoration: underline">json</span>
+
+<span style="color: #6ab825; font-weight: bold">from</span> <span style="color: #447fcf; text-decoration: underline">spotipy.oauth2</span> <span style="color: #6ab825; font-weight: bold">import</span> <span style="color: #d0d0d0">SpotifyClientCredentials</span>
+
+<span style="color: #999999; font-style: italic">###################</span>
+<span style="color: #999999; font-style: italic"># PARTE SCRAPPING #</span>
+<span style="color: #999999; font-style: italic">###################</span>
+
+<span style="color: #d0d0d0">años</span> <span style="color: #d0d0d0">=</span> <span style="color: #24909d">range</span><span style="color: #d0d0d0">(</span><span style="color: #3677a9">2000</span><span style="color: #d0d0d0">,</span><span style="color: #3677a9">2024</span><span style="color: #d0d0d0">,</span><span style="color: #3677a9">1</span><span style="color: #d0d0d0">)</span> <span style="color: #999999; font-style: italic"># Se genra un rango de años</span>
+
+<span style="color: #d0d0d0">list_of_dfs</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">[]</span> <span style="color: #999999; font-style: italic"># Aquí se guardaran las tablas de resultados para cada año</span>
+
+<span style="color: #999999; font-style: italic"># Iteramos sobre los años</span>
+<span style="color: #6ab825; font-weight: bold">for</span> <span style="color: #d0d0d0">año</span> <span style="color: #6ab825; font-weight: bold">in</span> <span style="color: #d0d0d0">años:</span>
+    <span style="color: #d0d0d0">url</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">f</span><span style="color: #ed9d13">&#39;https://es.wikipedia.org/wiki/Festival_de_la_Canci%C3%B3n_de_Eurovisi%C3%B3n_{año}&#39;</span> <span style="color: #999999; font-style: italic"># Variando el año</span>
+    <span style="color: #d0d0d0">response</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">requests.get(url)</span> <span style="color: #999999; font-style: italic"># Hacemos la petición de la URL</span>
+    <span style="color: #d0d0d0">soup</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">BeautifulSoup(response.text,</span> <span style="color: #ed9d13">&#39;html.parser&#39;</span><span style="color: #d0d0d0">)</span> <span style="color: #999999; font-style: italic"># La procesamos cono HTML</span>
+    <span style="color: #6ab825; font-weight: bold">try</span><span style="color: #d0d0d0">:</span> <span style="color: #999999; font-style: italic"># Intentamos obtener el &lt;span&gt; con id = Final</span>
+        <span style="color: #d0d0d0">final</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">soup.find(</span><span style="color: #ed9d13">&#39;span&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #24909d">id</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&quot;Final&quot;</span><span style="color: #d0d0d0">)</span>
+        <span style="color: #d0d0d0">tabla</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">final.find_next(</span><span style="color: #ed9d13">&quot;table&quot;</span><span style="color: #d0d0d0">)</span> <span style="color: #999999; font-style: italic"># Buscamos la tabla después del elemento &lt;span&gt;</span>
+        <span style="color: #d0d0d0">df</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">pd.read_html(tabla.prettify())[</span><span style="color: #3677a9">0</span><span style="color: #d0d0d0">]</span>
+
+        <span style="color: #999999; font-style: italic"># Generamos columna y limpiamos las ya existentes para unificar los criterios</span>
+        <span style="color: #d0d0d0">df[</span><span style="color: #ed9d13">&quot;año&quot;</span><span style="color: #d0d0d0">]</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">año</span>
+        <span style="color: #d0d0d0">df.columns.values[</span><span style="color: #3677a9">0</span><span style="color: #d0d0d0">]</span> <span style="color: #d0d0d0">=</span> <span style="color: #ed9d13">&quot;N.&quot;</span>
+        <span style="color: #d0d0d0">df.columns.values[</span><span style="color: #3677a9">2</span><span style="color: #d0d0d0">]</span> <span style="color: #d0d0d0">=</span> <span style="color: #ed9d13">&quot;cantante&quot;</span>
+        <span style="color: #d0d0d0">df.columns.values[</span><span style="color: #3677a9">5</span><span style="color: #d0d0d0">]</span> <span style="color: #d0d0d0">=</span> <span style="color: #ed9d13">&quot;Puntos&quot;</span>
+
+        <span style="color: #24909d">print</span><span style="color: #d0d0d0">(df)</span>
+        <span style="color: #d0d0d0">list_of_dfs.append(df)</span>
+    <span style="color: #6ab825; font-weight: bold">except</span> <span style="color: #bbbbbb">AttributeError</span><span style="color: #d0d0d0">:</span>
+        <span style="color: #24909d">print</span><span style="color: #d0d0d0">(f</span><span style="color: #ed9d13">&quot;error en el año: {año}&quot;</span><span style="color: #d0d0d0">)</span>
+        <span style="color: #6ab825; font-weight: bold">pass</span>
+
+
+<span style="color: #d0d0d0">final_df</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">pd.concat(list_of_dfs)</span>
+<span style="color: #d0d0d0">final_df.to_csv(</span><span style="color: #ed9d13">&quot;dataset.csv&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">sep=</span><span style="color: #ed9d13">&quot;\t&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">quotechar=</span><span style="color: #ed9d13">&#39;&quot;&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">index=</span><span style="color: #6ab825; font-weight: bold">False</span><span style="color: #d0d0d0">)</span>
+
+<span style="color: #999999; font-style: italic">#####################</span>
+<span style="color: #999999; font-style: italic"># PARTE SPOTIFY API #</span>
+<span style="color: #999999; font-style: italic">#####################</span>
+
+<span style="color: #999999; font-style: italic">## LEEMOS EL DF QUE ACABAMOS DE CREAR para lanzxar las consultas a spotify</span>
+
+<span style="color: #d0d0d0">df</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">pd.read_csv(</span><span style="color: #ed9d13">&quot;dataset.csv&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">sep=</span><span style="color: #ed9d13">&quot;\t&quot;</span><span style="color: #d0d0d0">)</span>
+<span style="color: #d0d0d0">list_of_rows</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">[]</span>
+
+<span style="color: #6ab825; font-weight: bold">for</span> <span style="color: #d0d0d0">index,</span> <span style="color: #d0d0d0">row</span> <span style="color: #6ab825; font-weight: bold">in</span> <span style="color: #d0d0d0">df.iterrows():</span>
+    <span style="color: #d0d0d0">artist</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">row[</span><span style="color: #ed9d13">&quot;cantante&quot;</span><span style="color: #d0d0d0">]</span>
+    <span style="color: #d0d0d0">track</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">row[</span><span style="color: #ed9d13">&quot;Canción&quot;</span><span style="color: #d0d0d0">]</span>
+    <span style="color: #d0d0d0">año</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">row[</span><span style="color: #ed9d13">&quot;año&quot;</span><span style="color: #d0d0d0">]</span>
+    <span style="color: #24909d">print</span><span style="color: #d0d0d0">(f</span><span style="color: #ed9d13">&quot;pillando datos para {artist} - canción: {track} - año: {año}&quot;</span><span style="color: #d0d0d0">)</span>
+    <span style="color: #6ab825; font-weight: bold">try</span><span style="color: #d0d0d0">:</span>
+        <span style="color: #d0d0d0">track</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">track.split(</span><span style="color: #ed9d13">&quot;«&quot;</span><span style="color: #d0d0d0">)[</span><span style="color: #3677a9">1</span><span style="color: #d0d0d0">].split(</span><span style="color: #ed9d13">&quot;»&quot;</span><span style="color: #d0d0d0">)[</span><span style="color: #3677a9">0</span><span style="color: #d0d0d0">]</span>
+
+    <span style="color: #6ab825; font-weight: bold">except</span><span style="color: #d0d0d0">:</span>
+        <span style="color: #6ab825; font-weight: bold">pass</span>
+
+    <span style="color: #d0d0d0">SPOTIPY_CLIENT_ID=</span><span style="color: #ed9d13">&quot;tus_credenciales&quot;</span>
+    <span style="color: #d0d0d0">SPOTIPY_CLIENT_SECRET=</span><span style="color: #ed9d13">&quot;tus_credenciales&quot;</span>
+
+    <span style="color: #d0d0d0">auth_manager</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">SpotifyClientCredentials(SPOTIPY_CLIENT_ID,</span> <span style="color: #d0d0d0">SPOTIPY_CLIENT_SECRET)</span>
+    <span style="color: #d0d0d0">sp</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">spotipy.Spotify(auth_manager=auth_manager)</span>
+
+    <span style="color: #d0d0d0">q</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">f</span><span style="color: #ed9d13">&quot;{artist} {track}&quot;</span>
+    <span style="color: #d0d0d0">query</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">sp.search(q,</span> <span style="color: #d0d0d0">limit=</span><span style="color: #3677a9">1</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">offset=</span><span style="color: #3677a9">0</span><span style="color: #d0d0d0">,</span> <span style="color: #24909d">type</span><span style="color: #d0d0d0">=</span><span style="color: #ed9d13">&#39;track&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">market=</span><span style="color: #6ab825; font-weight: bold">None</span><span style="color: #d0d0d0">)</span>
+    <span style="color: #6ab825; font-weight: bold">with</span> <span style="color: #24909d">open</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&#39;data.json&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #ed9d13">&#39;w&#39;</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">encoding=</span><span style="color: #ed9d13">&#39;utf-8&#39;</span><span style="color: #d0d0d0">)</span> <span style="color: #6ab825; font-weight: bold">as</span> <span style="color: #d0d0d0">f:</span>
+        <span style="color: #d0d0d0">json.dump(query,</span> <span style="color: #d0d0d0">f,</span> <span style="color: #d0d0d0">ensure_ascii=</span><span style="color: #6ab825; font-weight: bold">False</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">indent=</span><span style="color: #3677a9">4</span><span style="color: #d0d0d0">)</span>
+
+    <span style="color: #6ab825; font-weight: bold">try</span><span style="color: #d0d0d0">:</span>
+        <span style="color: #d0d0d0">row[</span><span style="color: #ed9d13">&quot;url&quot;</span><span style="color: #d0d0d0">]</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">query[</span><span style="color: #ed9d13">&quot;tracks&quot;</span><span style="color: #d0d0d0">][</span><span style="color: #ed9d13">&quot;items&quot;</span><span style="color: #d0d0d0">][</span><span style="color: #3677a9">0</span><span style="color: #d0d0d0">][</span><span style="color: #ed9d13">&quot;external_urls&quot;</span><span style="color: #d0d0d0">][</span><span style="color: #ed9d13">&quot;spotify&quot;</span><span style="color: #d0d0d0">]</span>
+        <span style="color: #d0d0d0">row[</span><span style="color: #ed9d13">&quot;track_id&quot;</span><span style="color: #d0d0d0">]</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">query[</span><span style="color: #ed9d13">&quot;tracks&quot;</span><span style="color: #d0d0d0">][</span><span style="color: #ed9d13">&quot;items&quot;</span><span style="color: #d0d0d0">][</span><span style="color: #3677a9">0</span><span style="color: #d0d0d0">][</span><span style="color: #ed9d13">&quot;id&quot;</span><span style="color: #d0d0d0">]</span>
+        <span style="color: #d0d0d0">tracK_id</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">query[</span><span style="color: #ed9d13">&quot;tracks&quot;</span><span style="color: #d0d0d0">][</span><span style="color: #ed9d13">&quot;items&quot;</span><span style="color: #d0d0d0">][</span><span style="color: #3677a9">0</span><span style="color: #d0d0d0">][</span><span style="color: #ed9d13">&quot;id&quot;</span><span style="color: #d0d0d0">]</span>
+    <span style="color: #6ab825; font-weight: bold">except</span> <span style="color: #bbbbbb">IndexError</span><span style="color: #d0d0d0">:</span>
+        <span style="color: #d0d0d0">row[</span><span style="color: #ed9d13">&quot;url&quot;</span><span style="color: #d0d0d0">]</span> <span style="color: #d0d0d0">=</span> <span style="color: #ed9d13">&quot;no data&quot;</span>
+        <span style="color: #d0d0d0">row[</span><span style="color: #ed9d13">&quot;track_id&quot;</span><span style="color: #d0d0d0">]</span> <span style="color: #d0d0d0">=</span> <span style="color: #ed9d13">&quot;no data&quot;</span>
+
+    <span style="color: #999999; font-style: italic"># AGAFEM LES AUDIO FEATURES</span>
+    <span style="color: #d0d0d0">features</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">sp.audio_features(tracK_id)</span>
+    <span style="color: #d0d0d0">features_data</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">pd.DataFrame.from_dict(features,</span> <span style="color: #d0d0d0">orient=</span><span style="color: #ed9d13">&#39;columns&#39;</span><span style="color: #d0d0d0">)</span>
+
+    <span style="color: #999999; font-style: italic"># Convertim la ROW en una DF i treiem l&#39;index (fem un transpose amb .T)</span>
+    <span style="color: #d0d0d0">row_df</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">row.to_frame().T.reset_index(drop=</span><span style="color: #6ab825; font-weight: bold">True</span><span style="color: #d0d0d0">)</span>
+
+    <span style="color: #999999; font-style: italic"># Juntem els dos datasets</span>
+    <span style="color: #d0d0d0">all_data</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">pd.concat([row_df,</span> <span style="color: #d0d0d0">features_data],</span> <span style="color: #d0d0d0">axis=</span><span style="color: #3677a9">1</span><span style="color: #d0d0d0">)</span>
+
+    <span style="color: #24909d">print</span><span style="color: #d0d0d0">(all_data)</span>
+    <span style="color: #d0d0d0">list_of_rows.append(all_data)</span>
+    <span style="color: #d0d0d0">time.sleep(</span><span style="color: #3677a9">1</span><span style="color: #d0d0d0">)</span>
+
+<span style="color: #d0d0d0">final_rows</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">pd.concat(list_of_rows)</span>
+<span style="color: #d0d0d0">final_rows.to_csv(</span><span style="color: #ed9d13">&quot;final.csv&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">index=</span><span style="color: #6ab825; font-weight: bold">False</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">sep=</span><span style="color: #ed9d13">&quot;\t&quot;</span><span style="color: #d0d0d0">,</span> <span style="color: #d0d0d0">quotechar=</span><span style="color: #ed9d13">&#39;&quot;&#39;</span><span style="color: #d0d0d0">)</span>
+</pre></div>
+
+
+			<footer>
+			<hr>
+			<p>
+                Adrià Padila<br>
+                adrian.padilla@uab.cat<br>
+                <b>Universitat Autònoma de Barcelona</b>
+            </p>
+
+			</footer>
+		</div>
+	</body>
+
+
+
+</html>
