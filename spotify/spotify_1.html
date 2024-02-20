@@ -13,17 +13,18 @@
 			</header>
 
 			<h1>Spofity: Introducción a la API</h1>
-			<h2>Introducción y documentación Básica</h2>
-			<p>Tu amigo es un gran fan <a href="https://es.wikipedia.org/wiki/Peter_Tosh" target="_blank">Peter Tosh</a>, y te ha pedido que le recomiendes otros artistas similares que puedan escuchar en Spotify. Vamos a usar la API de la plataforma para extraer datos y darle un listado de otros musicos que sean similares. Para esto necesitas:</p>
+			<h2>Documentación básica</h2>
+			
 			<ol>				
 				<li><a href="https://developer.spotify.com/documentation/web-api/" target="_blank">API Spotify Documentación</a>: Leer la documentación de la API</li>
 				<li><a href="https://spotipy.readthedocs.io/en/master/" target="_blank">Spotipy: Python Library</a>: Leer la documentación de Spotipy</li>
 				<li><a href="https://pypi.org/project/spotipy/" target="_blank">Pip Spotipy</a>: Libreria externa a Spotify para realizar peticiones</li>
 			</ol>
+		<h3>Tarea 1: Obtener una lista en EXCEL de artistas relacionados</h3>
+		<p>Tu amigo es un gran fan de <a href="https://open.spotify.com/intl-es/artist/5qPeAT4ikl6gJNUexAOEy0" target="_blank">Oques Grasses</a>, y quiere descubrir otros artistas similares. Vamos a usar la API de Spotify para extraer estos datos y generar un documento excel con un listado de artistas.</p>
 
 		<h2>Ejemplo de implementación</h2>
 		<h3>Petición básica</h3>
-
 
 <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">import</span> <span style="color: #f8f8f2">spotipy</span>
 <span style="color: #f92672">from</span> <span style="color: #f8f8f2">spotipy.oauth2</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">SpotifyClientCredentials</span>
@@ -285,7 +286,8 @@
 <span style="color: #f8f8f2">frame</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">to_excel(</span><span style="color: #e6db74">&quot;metodo_2.xlsx&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">index</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">False)</span>
 </pre></div>
 
-
+<h3>Tarea 2: Escala tu aplicación</h3>
+<p>A tu amigo le ha encantado el listado de músicos que le has pasado, pero ahora quiere saber qué otroo artistas están relacionados... ¿Será posible obtener los artistas relacionados de los artistas relacionados?</p>
 
 	
 			<footer>
