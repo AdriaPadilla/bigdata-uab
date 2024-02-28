@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<!-- http://hilite.me/ -->
+	<head>
+		<title>Data Viz. Big Data UAB</title>
+		<link href="../styles/style.css" rel="stylesheet" type="text/css">
+        <style>
+         table, th, td {
+            padding:5px;
+            border: 1px solid white;
+            border-collapse: collapse;
+            }
+    </style>
+	</head>
+	<body>
+
+		<div class="container">
+			<header>
+                    <p><a href="./../index.html">Regresar al Inicio</a>
+			</header>
+
+			<h1>Ejercicio de Extracción de datos de la API de Spotify</h1>
+            <h2>Enunciado del trabajo</h2>
+
+            <p>En la primera y en la segunda clase sobre la API de Spotify aprendimos a extraer datos de la plataforma. Concretamente utilizamos una funcionalidad de la API de Spotify que nos permite obtener los artistas relacionados con un artista. Para ello usamos la librería "Spotipy" y su función <a href="https://spotipy.readthedocs.io/en/2.7.0/#spotipy.client.Spotify.artist_related_artists" target="_blank">artists_related_artists()</a>.</p>
+            <p>Con este simple código, ya era posible obtener las recomendaciones:</p>
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">import</span> <span style="color: #f8f8f2">spotipy</span>
+<span style="color: #f92672">from</span> <span style="color: #f8f8f2">spotipy.oauth2</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">SpotifyClientCredentials</span>
+<span style="color: #f92672">import</span> <span style="color: #f8f8f2">pandas</span> <span style="color: #f92672">as</span> <span style="color: #f8f8f2">pd</span>
+
+<span style="color: #f8f8f2">api_client_id</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;&quot;</span>
+<span style="color: #f8f8f2">api_client_secret</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;&quot;</span>
+
+<span style="color: #f8f8f2">spotify</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">spotipy</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">Spotify(client_credentials_manager</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">SpotifyClientCredentials(api_client_id,api_client_secret))</span>
+
+<span style="color: #f8f8f2">artist_id</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;0sKBEhvr6hz7Wpptw0fY8U&quot;</span>
+
+<span style="color: #f8f8f2">llista_artistes</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[]</span>
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">get_related</span><span style="color: #f8f8f2">(artist_id):</span>
+    <span style="color: #f8f8f2">resposta</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">spotify</span><span style="color: #f92672">.</span><span style="color: #f8f8f2"><i>artist_related_artists(artist_id)</i></span>
+    <span style="color: #66d9ef">return</span> <span style="color: #f8f8f2">resposta</span>
+
+<span style="color: #f8f8f2">result</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">get_related(artist_id)</span>
+</pre></div>
+
+            <p>Este ejercicio tiene una lógica similar: vamos a obtener recomendaciones. Pero el punto de partida no será un único artista, sino una playlist de Spotify (la que tu quieras). Esto "escalará" el volumen de datos recopilados. Por cada artista se obtienen 20 recomendaciones. Esto significa que si en la playlist con la que trabajamos tiene 50 canciones, rápidamente obtendremos aproximadamente 1000 artistas relacionados.</p>
+            <p>Para lograr ejecutar este ejercicio, deberás substituir la función <i>artist_related_artist()</i> por otra, que te permita obtener los datos de una playlist de spotify.</p>
+            <p>Recuerda que la respuesta de la API es un JSON, que deberás guardar en un archivo .json para estudiar su estructura, y así poder extraer los datos necesarios. Con un código similar a este, podrás guardar la información:</p>
+            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%">1
+2
+3</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">import</span> <span style="color: #f8f8f2">json</span>
+<span style="color: #66d9ef">with</span> <span style="color: #f8f8f2">open(</span><span style="color: #e6db74">&#39;data.json&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;w&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">encoding</span><span style="color: #f92672">=</span><span style="color: #e6db74">&#39;utf-8&#39;</span><span style="color: #f8f8f2">)</span> <span style="color: #66d9ef">as</span> <span style="color: #f8f8f2">f:</span>
+    <span style="color: #f8f8f2">json</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">dump(data,</span> <span style="color: #f8f8f2">f,</span> <span style="color: #f8f8f2">ensure_ascii</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">False,</span> <span style="color: #f8f8f2">indent</span><span style="color: #f92672">=</span><span style="color: #ae81ff">4</span><span style="color: #f8f8f2">)</span>
+</pre></td></tr></table></div>
+            <p>En este código, 'data.json' es el nombre del archivo con el que se guardarán los datos, y 'data' (linea 3) es la variable donde está contenida la respuesta de la API. Recuerda que no es necesario estar guardando continuamente los datos en el .json, por lo que quizás debas comentar o eliminar este fragmento de código cuando tengas una muestra de la respuesta de la API.</p>
+            <h2><strong>Objetivos del trabajo</strong></h2>
+            <p>Crear una red de artistas recomendados partiendo de una playlist de Spotify.</p>
+            <p>NO es necesario dibujar el grafo con Gephi (lo haremos en clase). Sencillamente obtener los datos necesarios para hacerlo</p>
+            <b>Pasos lógicos</b>
+            <ol>
+                <li>Seleccona una playlist de Spotify, que tenga entre 50 y 100 canciones.</li>
+                <li>Recopila los datos de esta playlist usando la API de spotify y la librería Spotipy. Guarda los datos en un .json y estudia su estructura.</li>
+                <li>Una vez tengas las canciones de la playlist, posiblemente encuentres el ID del artista, lo que te permitirá lanzar la función <i>artist_related_artists()</i> que ya hemos estado usando anteriormente.</li>
+                <li>Procesa los datos para acabar generando un documento en .csv (con Pandas) que podamos abrir en Gephi</li>
+            </ol>
+            <p>Este ejercicio complica las lógicas de extracción de datos e introduce varias llamadas a la API. Los datos de la primera llamada son necesarios para la segunda. Por lo tanto, debes ir creando el código paso a paso, asegurando que cada apartado funciona bien. Recuerda hacer <i>print()</i> de las repuestas de la API, y de datos estratégicos, para saber que el script corre bien.</p>
+            <p>Estructura del CSV para gephi</p>
+            <table>
+                <tr>
+                <td><b>source</td>
+                <td><b>target</td>
+                </tr>
+                <tr>
+                <td>Artista A</td>
+                <td>Artista B</td>
+                </tr>
+                <tr>
+                <td>Artista A</td>
+                <td>Artista C</td>
+                </tr>
+            </table> 
+
+            <h2>Recursos básicos</h2>
+            <p>
+                - Documentación API Spotify: <a href="https://developer.spotify.com/documentation/web-api/" target="_blank">Read The Docs</a><br>
+                - Libreria Python Spotipy: <a href="https://spotipy.readthedocs.io/en/2.22.1/#" target="_blank">Spotipy Read The Docs</a>
+            </p>
+			<footer>
+                <hr>	
+                <p>Adrià Padila</p>
+                </footer>
+            </div>
+        </body>
+    
+    
+    
+    </html>
