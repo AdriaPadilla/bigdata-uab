@@ -26,7 +26,7 @@
                 <li>Recuerda: NUNCA publiques las claves de tu aplicación.</li>
             </ol>
             <h3>Codigo de ejemplo:</h3>
-            <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+          <!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
  2
  3
  4
@@ -41,22 +41,42 @@
 13
 14
 15
-16</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #f92672">from</span> <span style="color: #f8f8f2">twitchAPI.twitch</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">Twitch</span>
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">public</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;clau_publica&quot;</span>
+<span style="color: #f8f8f2">secret</span> <span style="color: #f92672">=</span> <span style="color: #e6db74">&quot;clau_secreta&quot;</span>
+
+<span style="color: #f92672">from</span> <span style="color: #f8f8f2">twitchAPI.twitch</span> <span style="color: #f92672">import</span> <span style="color: #f8f8f2">Twitch</span>
 <span style="color: #f92672">import</span> <span style="color: #f8f8f2">json</span>
+<span style="color: #f92672">import</span> <span style="color: #f8f8f2">time</span>
 
-<span style="color: #75715e"># TWITCH API VERSION 2.5.7.1</span>
-<span style="color: #75715e"># pip install twitchAPI==2.5.7.1</span>
-<span style="color: #75715e"># DOCS https://pytwitchapi.readthedocs.io/en/v2.5.7/modules/twitchAPI.twitch.html</span>
+<span style="color: #f8f8f2">twitch</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Twitch(public,</span> <span style="color: #f8f8f2">secret)</span>
+<span style="color: #f8f8f2">next</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">None</span>
+<span style="color: #f8f8f2">loop</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0</span>
+<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">get_str</span><span style="color: #f8f8f2">(next,</span> <span style="color: #f8f8f2">loop):</span>
+    <span style="color: #f8f8f2">resposta</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">twitch</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">get_streams(language</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;es&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">after</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">next,</span> <span style="color: #f8f8f2">first</span><span style="color: #f92672">=</span><span style="color: #ae81ff">100</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(len(resposta[</span><span style="color: #e6db74">&quot;data&quot;</span><span style="color: #f8f8f2">]))</span>
+    <span style="color: #66d9ef">with</span> <span style="color: #f8f8f2">open(f</span><span style="color: #e6db74">&#39;{loop}.json&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;w&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">encoding</span><span style="color: #f92672">=</span><span style="color: #e6db74">&#39;utf-8&#39;</span><span style="color: #f8f8f2">)</span> <span style="color: #66d9ef">as</span> <span style="color: #f8f8f2">f:</span>
+        <span style="color: #f8f8f2">json</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">dump(resposta,</span> <span style="color: #f8f8f2">f,</span> <span style="color: #f8f8f2">ensure_ascii</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">False,</span> <span style="color: #f8f8f2">indent</span><span style="color: #f92672">=</span><span style="color: #ae81ff">4</span><span style="color: #f8f8f2">)</span>
+    <span style="color: #66d9ef">try</span><span style="color: #f8f8f2">:</span>
+        <span style="color: #f8f8f2">next</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">resposta[</span><span style="color: #e6db74">&quot;pagination&quot;</span><span style="color: #f8f8f2">][</span><span style="color: #e6db74">&quot;cursor&quot;</span><span style="color: #f8f8f2">]</span>
+        <span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(f</span><span style="color: #e6db74">&quot;hi ha nova pàgina loop {loop}&quot;</span><span style="color: #f8f8f2">)</span>
+        <span style="color: #f8f8f2">loop</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">loop</span><span style="color: #f92672">+</span><span style="color: #ae81ff">1</span>
+        <span style="color: #f8f8f2">time</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">sleep(</span><span style="color: #ae81ff">2</span><span style="color: #f8f8f2">)</span>
+        <span style="color: #f8f8f2">get_str(next,</span> <span style="color: #f8f8f2">loop)</span>
+    <span style="color: #66d9ef">except</span><span style="color: #f8f8f2">:</span>
+        <span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&quot;final&quot;</span><span style="color: #f8f8f2">)</span>
+        <span style="color: #66d9ef">pass</span>
 
-<span style="color: #f8f8f2">twitch</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">Twitch(</span><span style="color: #e6db74">&#39;key_&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;Key_secret&#39;</span><span style="color: #f8f8f2">)</span>
-
-<span style="color: #66d9ef">def</span> <span style="color: #a6e22e">get_live_streams</span><span style="color: #f8f8f2">():</span>
-    <span style="color: #f8f8f2">results</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">twitch</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">get_streams(language</span><span style="color: #f92672">=</span><span style="color: #e6db74">&quot;es&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">after</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">)</span>
-    <span style="color: #66d9ef">print</span><span style="color: #f8f8f2">(results)</span>
-    <span style="color: #66d9ef">with</span> <span style="color: #f8f8f2">open(</span><span style="color: #e6db74">&quot;streams.json&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&#39;w&#39;</span><span style="color: #f8f8f2">,</span> <span style="color: #f8f8f2">encoding</span><span style="color: #f92672">=</span><span style="color: #e6db74">&#39;utf-8&#39;</span><span style="color: #f8f8f2">)</span> <span style="color: #66d9ef">as</span> <span style="color: #f8f8f2">f:</span>
-        <span style="color: #f8f8f2">json</span><span style="color: #f92672">.</span><span style="color: #f8f8f2">dump(results,</span> <span style="color: #f8f8f2">f,</span> <span style="color: #f8f8f2">ensure_ascii</span><span style="color: #f92672">=</span><span style="color: #f8f8f2">False,</span> <span style="color: #f8f8f2">indent</span><span style="color: #f92672">=</span><span style="color: #ae81ff">4</span><span style="color: #f8f8f2">)</span>
-
-<span style="color: #f8f8f2">get_live_streams()</span>
+<span style="color: #f8f8f2">get_str(next,loop)</span>
 </pre></td></tr></table></div>
 
 

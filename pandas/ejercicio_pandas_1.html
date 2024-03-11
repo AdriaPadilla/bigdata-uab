@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <!-- http://hilite.me/ -->
+    <head>
+        <title>Data Viz. Big Data UAB</title>
+        <link href="../styles/style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                    <p><a href="../index.html">Regresar al Inicio</a>
+            </header>
+        		<h1 id="ejer">Ejercicio 1: Introducción a Pandas</h1>
+				<h2>Planteamiento del problema</h2>
+                <p>Disponemos de las notas y los datos de los alumnos en tres listas distintas.</p>
+<!-- HTML generated using hilite.me --><div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #f8f8f2">notes</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #ae81ff">1</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">6</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">8</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">9</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">10</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">6</span><span style="color: #f8f8f2">,</span><span style="color: #ae81ff">5</span><span style="color: #f8f8f2">]</span>
+<span style="color: #f8f8f2">alumnes</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&quot;Jaume&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;Carles&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;Cristina&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;Josep&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;Rafael&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;Agnès&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;Marta&quot;</span><span style="color: #f8f8f2">]</span>
+<span style="color: #f8f8f2">cognoms</span> <span style="color: #f92672">=</span> <span style="color: #f8f8f2">[</span><span style="color: #e6db74">&quot;Tort&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;Soldevila&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;Luna&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;Muñoz&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;Fernandez&quot;</span><span style="color: #f8f8f2">,</span><span style="color: #e6db74">&quot;Hernandez&quot;</span><span style="color: #f8f8f2">,</span> <span style="color: #e6db74">&quot;Llopart&quot;</span><span style="color: #f8f8f2">]</span>
+</pre></div> 
+            <p><b>Objetivo</b>: Crea un documento .CSV con 5 columnas:
+            <ol>
+            <li>Columna 1: Nombre y apellidos (en una única cadena de texto) de cada alumno</li>
+            <li>Columna 2: Nota de cada alumno</li>
+            <li>Columna 3: Nota "en texto" para cada alumno:</li>
+                <ol> 
+                <li>Si la nota final es inferior a 5, añadir el texto "suspendido".</li>
+                <li>Si la nota se encuentra entre 5 y 6 (ambos incluídos), añadir el texto "aprobado".</li>
+                <li>Si la nota es superior a 6, e inferior a 7, añadir el texto "bien".</li>
+                <li>Si la nota es igual o superior a 7, añadir el texto "notable".</li>
+                <li>Si la nota supera el 9, añadir el texto "Excelente".</li>
+                <li>Si la nota equivale a un 10, añadir el texto "matrícula de honor".</li>
+                </ol>
+            </li>
+            <li>Columna 4: Diferencia de nota respecto a la mediana del grupo</li>
+            <li>Columna 4: Diferencia de nota (expreseda en porcentaje) respecto a la mediana del grupo</li>
+            </ol>
+            <b>Condiciones especiales</b>
+            <ol>
+                <li>Antes de hacer los cálculos, debes sumar UN punto a cada alumno, pero la nota máxima nunca puede superar el 10.
+            </ol>
+
+
+            </p>
+            <h1 id="ejer" id="import_df">Ejercicio 2: Análisis de datos de YouTube</h1>
+            <h2>Planteamiento del problema</h2>
+            <p>En este <a href="https://docs.google.com/spreadsheets/d/1phtRES5uBLjue-Re8uFc7tMFp5dR3ixi/edit?usp=sharing&ouid=109966446939529186746&rtpof=true&sd=true" target="_blank">dataset</a> tienes los datos extraídos del canal de YouTube "KEXP" en formato xlsx. La "KEXP" (Seattle International) es una emisora con una larga tradición de conciertos en directo. El dataset contiene <b>todos los vídeos publicados hasta el 11/03/2024</b>. Queremos saber:</p>
+            <ol>   
+                <li>Volumnen general: ¿Cuantas filas y columnas tiene el dataset completo?</li>
+                <li>Composición del dataset: ¿Qué columnas componen el dataset?</li>
+                <li>Calcula la desviación (absoluta y porcentual) de cada vídeo sobre el promedio de especatadores/comentarios/likes del canal.</li>
+                <li>Localiza el vídeo más visto.</li>
+                <li>Localiza el vídeo más comentado.</li>
+                <li>Crea una nueva columna para cada uno de los valores calculador anteriormente, y crea un nuevo dataset final que incorpore toda la nueva información.</li>
+                <li>Calcula la duración en segundos de cada video, e indica su desviación porcentual sobre el promedio de duración de los videos del canal.</li>
+                <li>Visualiza todas las estadísticas calculadas anteriormente en un gráfico de Tableau</li>
+            </ol>
+			<footer>
+			<hr>
+			<p>
+                Adrià Padila<br>
+                adrian.padilla@uab.cat<br>
+                <b>Universitat Autònoma de Barcelona</b>
+            </p>
+
+			</footer>
+		</div>
+	</body>
+</html>
